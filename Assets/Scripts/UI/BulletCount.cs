@@ -16,11 +16,15 @@ public class BulletCount : MonoBehaviour
     }
     private void Start()
     {
-        handgun.changeBulletCount += bulletCount;
-    }
-
+        handgun.changeBullet += bulletCount;
+        handgun.changeHaveBullet += haveBullet;
+    }  
     private void bulletCount(int obj)
     {
-        text.text = $"{handgun.CurrentBulletCount}/{handgun.MaxBulletCount}";
+        text.text = $"{handgun.ReloadedBulletCount}/{handgun.HaveBullet}";
+    }
+    private void haveBullet(int obj)
+    {
+        text.text = $"{handgun.ReloadedBulletCount}/{handgun.HaveBullet}";
     }
 }

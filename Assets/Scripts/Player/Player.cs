@@ -128,6 +128,8 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        Cursor.lockState = CursorLockMode.Locked;   // 게임 창 밖으로 마우스가 안나감, 마우스를 게임 중앙 좌표에 고정시키고 숨김
+
         // 키보드 이동이 있을때
         if (moveDir.sqrMagnitude > 0.0f)
         {
@@ -308,10 +310,7 @@ public class Player : MonoBehaviour
 
     private void onReload(InputAction.CallbackContext _)
     {
-        if(!handgun.Reloading && (handgun.CurrentBulletCount != handgun.MaxBulletCount))
-        {
-            handgun.ReloadHandgun();
-        }
+        handgun.ReloadHandgun();        
     }
 
     private void onShot(InputAction.CallbackContext _)
