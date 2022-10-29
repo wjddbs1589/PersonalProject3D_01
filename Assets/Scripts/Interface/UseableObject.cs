@@ -4,10 +4,20 @@ using UnityEngine;
 
 public interface UseableObject 
 {
-    //아이템이 바로 사용될 것인지 확인할 함수
+    /// <summary>
+    /// 아이템이 바로 사용될 것인지 확인할 함수
+    /// </summary>
+    /// <returns>true면 바로사용되는 아이템, false면 인벤토리에 저장되는 아이템</returns>
     bool directUseable();    
-    //맵에 있는 아이템 상호 작용할 함수
+
+    /// <summary>
+    /// 맵에 있는 아이템 상호 작용할 함수
+    /// </summary>
     void objectIneractive();
-    // 상호작용 가능한 오브젝트의 이름 반환할 함수
+
+    /// <summary>
+    /// 상호작용 가능한 오브젝트의 이름 반환할 함수
+    /// </summary>
+    /// <returns>현재 조준하고있는 오브젝트명 반환</returns>
     string objectName();
 }

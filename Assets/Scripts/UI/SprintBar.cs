@@ -11,8 +11,6 @@ public class SprintBar : MonoBehaviour
     Slider slider;
     Image fill;
     
-    float sprintTime = 5.0f;
-    float currentTime = 5.0f;
     float sliderRate;
     private void Awake()
     {

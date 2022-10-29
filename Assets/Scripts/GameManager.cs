@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    static GameManager instance = null;
+    public static GameManager Inst => instance;
+    //---------------------------------------------
+    KeyRoomBattery keyRoomBattery;
+    public KeyRoomBattery KeyRoomBattery => keyRoomBattery;
+    //---------------------------------------------
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;              
+            DontDestroyOnLoad(this.gameObject); 
+            keyRoomBattery = FindObjectOfType<KeyRoomBattery>();
+        }
+        else
+        {
+            if (instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

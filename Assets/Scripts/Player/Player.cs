@@ -6,6 +6,7 @@ using TMPro;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem.HID;
+using InfimaGames.LowPolyShooterPack;
 
 public class Player : MonoBehaviour
 {
@@ -62,17 +63,8 @@ public class Player : MonoBehaviour
     GameObject playerLight;
     Light FlashLight;
     bool onLight = false;                   // 플래쉬를 사용 여부
-    //float DistanceToObject;                 // 물체까지의 거리
-    //float DistanceRate;                     // 물체까지의 거리비율
-    //float lightDecreaseDistance = 5.0f;     // 조명밝기 감소 최소거리
-    //float LightNormalIntensity = 10.0f;     // 조명밝기 기본값
-    //float lightIntensity = 10.0f;           // 적용할 조명밝기 값
-    //[Header("플래쉬 라이트 최소/최대 밝기")]
-    //public float lightMin = 3.0f;           // 최소 밝기 값
-    //public float lightMax = 10.0f;          // 최대 밝기 값
 
     // 필드 아이템 상호작용
-    GameObject InteractiveCheckPos;
     TextMeshProUGUI itemNameText;
     UseableObject useable;
 
@@ -109,7 +101,7 @@ public class Player : MonoBehaviour
         actions.Player.Move.canceled -= onMove;
         actions.Player.Move.performed -= onMove;
         actions.Player.Disable();
-    }    
+    }
 
     private void Awake()
     {
@@ -120,11 +112,14 @@ public class Player : MonoBehaviour
         playerLight = transform.GetChild(2).gameObject;
         FlashLight = playerLight.transform.GetComponent<Light>();
         playerLight.SetActive(false);
-        InteractiveCheckPos = transform.GetChild(3).gameObject;
 
         itemNameText = GameObject.Find("ItemName").gameObject.GetComponent<TextMeshProUGUI>();
 
         handgun = cameraTarget.transform.Find("Handgun").gameObject.transform.GetComponent<Handgun>();
+    }
+    private void Start()
+    {
+       
     }
     private void Update()
     {
@@ -189,24 +184,6 @@ public class Player : MonoBehaviour
         }
         //ray Debug 사용가능한 아이템 오브젝트 확인용
         Debug.DrawRay(cameraTarget.transform.position, cameraTarget.transform.forward * 2.5f, Color.blue);
-
-        //물체가 가까울수록 조명 세기 감소 - 보류------------------------
-        //if (Physics.Raycast(cameraTarget.transform.position, cameraTarget.transform.forward, out RaycastHit hitToObj))
-        //{
-        //    Debug.Log(hit.point);
-        //    Debug.Log((cameraTarget.transform.position - hit.point).magnitude);
-
-        //    DistanceToObject = (cameraTarget.transform.position - hit.point).magnitude;              // 내가 보고있는 시점에서 가까운 물체까지의 거리
-        //    DistanceRate = DistanceToObject / lightDecreaseDistance;                                 // 가까운 물체까지의 거리 비율
-        //    lightIntensity  = Mathf.Clamp(DistanceRate * LightNormalIntensity, lightMin, lightMax);  // 물체와 가까운 비율만큼 조명의 밝기 감소           
-        //}
-        //else
-        //{
-        //    lightIntensity = LightNormalIntensity;
-        //}
-        ////조명 밝기감소 거리 확인용
-        //Debug.DrawRay(cameraTarget.transform.position, cameraTarget.transform.forward * 3.0f, Color.red);
-        
     }
     private void LateUpdate()
     {
@@ -348,9 +325,6 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(0.0f, mouseDirX, 0.0f);                         // 캐릭터 회전
         cameraTarget.transform.rotation = Quaternion.Euler(mouseDirY, mouseDirX, 0.0f);       // 카메라 타겟 회전
         playerLight.transform.rotation = Quaternion.Euler(mouseDirY, mouseDirX, 0.0f);        // 플래쉬 라이트를 시선에 맞춰 회전
-
-        InteractiveCheckPos.transform.position = cameraTarget.transform.position;              // 아이템인식 오브젝트 카메라 위치랑 일치시킴
-        InteractiveCheckPos.transform.rotation = Quaternion.Euler(mouseDirY, mouseDirX, 0.0f); // 카메라와 같은 각도로 회전
     }
 
     /// <summary>

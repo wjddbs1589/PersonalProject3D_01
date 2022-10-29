@@ -38,14 +38,7 @@ public class Door : MonoBehaviour, UseableObject
     }
 
     public string objectName()
-    { 
-        if (canOpenDoor)
-        {
-            return "열기/닫기";
-        }
-        else
-        {
-            return "열기/닫기\n잠겨있음";
-        }
+    {
+        return "열기/닫기";
     }
 }
