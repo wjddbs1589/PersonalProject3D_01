@@ -179,148 +179,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: '
-
-    Transform ''Character1_LeftToeBase'' has been deleted
-
-    Transform
-    ''Character1_LeftFoot'' has been deleted
-
-    Transform ''Character1_LeftLeg''
-    has been deleted
-
-    Transform ''Character1_LeftUpLeg'' has been deleted
-
-    Transform
-    ''Character1_RightToeBase'' has been deleted
-
-    Transform ''Character1_RightFoot''
-    has been deleted
-
-    Transform ''Character1_RightLeg'' has been deleted
-
-    Transform
-    ''Character1_RightUpLeg'' has been deleted
-
-    Transform ''Character1_LeftHandIndex3''
-    has been deleted
-
-    Transform ''Character1_LeftHandIndex2'' has been deleted
-
-    Transform
-    ''Character1_LeftHandIndex1'' has been deleted
-
-    Transform ''Character1_LeftHandMiddle3''
-    has been deleted
-
-    Transform ''Character1_LeftHandMiddle2'' has been deleted
-
-    Transform
-    ''Character1_LeftHandMiddle1'' has been deleted
-
-    Transform ''Character1_LeftHandPinky3''
-    has been deleted
-
-    Transform ''Character1_LeftHandPinky2'' has been deleted
-
-    Transform
-    ''Character1_LeftHandPinky1'' has been deleted
-
-    Transform ''Character1_LeftHandRing3''
-    has been deleted
-
-    Transform ''Character1_LeftHandRing2'' has been deleted
-
-    Transform
-    ''Character1_LeftHandRing1'' has been deleted
-
-    Transform ''Character1_LeftHandThumb3''
-    has been deleted
-
-    Transform ''Character1_LeftHandThumb2'' has been deleted
-
-    Transform
-    ''Character1_LeftHandThumb1'' has been deleted
-
-    Transform ''Character1_LeftHand''
-    has been deleted
-
-    Transform ''Character1_LeftForeArm'' has been deleted
-
-    Transform
-    ''Character1_LeftArm'' has been deleted
-
-    Transform ''Character1_LeftShoulder''
-    has been deleted
-
-    Transform ''Character1_Head'' has been deleted
-
-    Transform
-    ''Character1_Neck'' has been deleted
-
-    Transform ''Character1_RightHandIndex3''
-    has been deleted
-
-    Transform ''Character1_RightHandIndex2'' has been deleted
-
-    Transform
-    ''Character1_RightHandIndex1'' has been deleted
-
-    Transform ''Character1_RightHandMiddle3''
-    has been deleted
-
-    Transform ''Character1_RightHandMiddle2'' has been deleted
-
-    Transform
-    ''Character1_RightHandMiddle1'' has been deleted
-
-    Transform ''Character1_RightHandPinky3''
-    has been deleted
-
-    Transform ''Character1_RightHandPinky2'' has been deleted
-
-    Transform
-    ''Character1_RightHandPinky1'' has been deleted
-
-    Transform ''Character1_RightHandRing3''
-    has been deleted
-
-    Transform ''Character1_RightHandRing2'' has been deleted
-
-    Transform
-    ''Character1_RightHandRing1'' has been deleted
-
-    Transform ''Character1_RightHandThumb3''
-    has been deleted
-
-    Transform ''Character1_RightHandThumb2'' has been deleted
-
-    Transform
-    ''Character1_RightHandThumb1'' has been deleted
-
-    Transform ''Character1_RightHand''
-    has been deleted
-
-    Transform ''Character1_RightForeArm'' has been deleted
-
-    Transform
-    ''Character1_RightArm'' has been deleted
-
-    Transform ''Character1_RightShoulder''
-    has been deleted
-
-    Transform ''Character1_Spine2'' has been deleted
-
-    Transform
-    ''Character1_Spine1'' has been deleted
-
-    Transform ''Character1_Spine'' has
-    been deleted
-
-    Transform ''Character1_Hips'' has been deleted
-
-    Transform
-    ''Character1_Reference'' has been deleted'
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -502,93 +361,78 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 8640345886310512859}
---- !u!1001 &8320577742228945343
+--- !u!1001 &690962368862763937
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 4482042600083961207}
     m_Modifications:
-    - target: {fileID: 6328614157589457308, guid: 1685dae5d0c43284a9e9382b2e7c1342,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.1349
-      objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.15
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785276758301, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+    - target: {fileID: 534519619851287299, guid: b94d5b5b2229d214391b5436e405040f,
         type: 3}
       propertyPath: m_Name
       value: Handgun
       objectReference: {fileID: 0}
-    - target: {fileID: 9044517785284037339, guid: 1685dae5d0c43284a9e9382b2e7c1342,
-        type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9044517785284037339, guid: 1685dae5d0c43284a9e9382b2e7c1342,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 0642b67b30508d648bb44ef0f628e023, type: 2}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1685dae5d0c43284a9e9382b2e7c1342, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: b94d5b5b2229d214391b5436e405040f, type: 3}
 --- !u!4 &1079795589925559426 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 9044517785276261693, guid: 1685dae5d0c43284a9e9382b2e7c1342,
+  m_CorrespondingSourceObject: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
     type: 3}
-  m_PrefabInstance: {fileID: 8320577742228945343}
+  m_PrefabInstance: {fileID: 690962368862763937}
   m_PrefabAsset: {fileID: 0}

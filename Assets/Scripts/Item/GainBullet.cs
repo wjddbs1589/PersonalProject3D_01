@@ -10,7 +10,7 @@ public class GainBullet : MonoBehaviour, UseableObject
         bullet = GameObject.Find("Handgun").gameObject.GetComponent<Handgun>();
     }
 
-    public bool directUseable()
+    public bool immediatelyUseable()
     {
         return true;
     }
@@ -24,5 +24,10 @@ public class GainBullet : MonoBehaviour, UseableObject
     public string objectName()
     {
         return "총알";
+    }
+
+    public int maxCount()
+    {
+        return 0;
     }
 }

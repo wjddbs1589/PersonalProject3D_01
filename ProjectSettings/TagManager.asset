@@ -17,6 +17,7 @@ TagManager:
   - Dirt (Static)
   - Wood
   - Useable
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -35,11 +36,11 @@ TagManager:
   - Invisible Wall
   - Projectile
   - 
+  - Field
   - 
   - 
   - 
-  - 
-  - 
+  - GlowStick
   - 
   - 
   - 

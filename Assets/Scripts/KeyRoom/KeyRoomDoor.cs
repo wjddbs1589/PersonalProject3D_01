@@ -45,7 +45,7 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
         }
     }
     //바로 사용하는 오브젝트인지 확인
-    public bool directUseable() 
+    public bool immediatelyUseable() 
     {
         return true;
     }
@@ -60,5 +60,10 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
         {
             return "전력 부족";
         }
+    }
+
+    public int maxCount()
+    {
+        return 0;
     }
 }

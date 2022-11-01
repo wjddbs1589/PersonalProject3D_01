@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ItemManager;
 
 public class Potion : MonoBehaviour, UseableObject
 {
@@ -9,8 +10,9 @@ public class Potion : MonoBehaviour, UseableObject
     {
         player = GameObject.Find("Player").GetComponent<Player>();
     }
-    public bool directUseable()
+    public bool immediatelyUseable()
     {
+        
         return true;
     }
 
@@ -26,5 +28,10 @@ public class Potion : MonoBehaviour, UseableObject
     public string objectName()
     {
         return "체력포션";
+    }
+
+    public int maxCount()
+    {
+        return 0;
     }
 }

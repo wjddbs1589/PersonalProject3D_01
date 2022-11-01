@@ -11,13 +11,13 @@ public class Generator : MonoBehaviour, UseableObject
     {
         GeneratorLight = transform.GetComponentInChildren<Light>();
     }
-    public bool directUseable()
+    public bool immediatelyUseable()
     {
         return true;
     }
 
     public void objectIneractive()
-    {
+    {        
         if (!Fixed)
         {
             Fixed = true;
@@ -36,5 +36,10 @@ public class Generator : MonoBehaviour, UseableObject
         {
             return "발전기(작동중)";
         }
+    }
+
+    public int maxCount()
+    {
+        return 0;
     }
 }

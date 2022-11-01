@@ -117,10 +117,6 @@ public class Player : MonoBehaviour
 
         handgun = cameraTarget.transform.Find("Handgun").gameObject.transform.GetComponent<Handgun>();
     }
-    private void Start()
-    {
-       
-    }
     private void Update()
     {
         Cursor.lockState = CursorLockMode.Locked;   // 게임 창 밖으로 마우스가 안나감, 마우스를 게임 중앙 좌표에 고정시키고 숨김
@@ -173,9 +169,11 @@ public class Player : MonoBehaviour
         //Physics.Raycast(원점: 캡슐 위치, 방향: 캡슐의 앞 방향, 충돌감지: hit, 거리: 15)에 뭔가 있으면 true
         if (Physics.Raycast(cameraTarget.transform.position, cameraTarget.transform.forward, out RaycastHit hit, 2.5f, LayerMask.GetMask("Useable")))
         {
-            //Debug.Log($"{hit.transform.name}");
             useable = hit.transform.GetComponent<UseableObject>();
-            itemNameText.text = useable.objectName();
+            if (useable != null)
+            {
+                itemNameText.text = useable.objectName();
+            }            
         }
         else
         {
@@ -240,22 +238,10 @@ public class Player : MonoBehaviour
     {
         if(useable != null)
         {
-            //아이템이 즉시사용 가능하면 아이템 사용
-            if (useable.directUseable())
-            {
-                useable.objectIneractive();
-            }
-            else
-            {
-                //아이템 인벤토리에 저장
-            }
+            useable.objectIneractive();
         }
     }
-    // 사용가능한 아이템을 사용하는 함수
-    void interactive(UseableObject obj)
-    {
-        obj.objectIneractive();
-    }
+
     // 캐릭터 앉기 기능--------------------------------------------------------
     private void onSit(InputAction.CallbackContext obj)
     {
