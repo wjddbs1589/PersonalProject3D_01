@@ -6,28 +6,38 @@ public class Generator : MonoBehaviour, UseableObject
 {
     Light GeneratorLight;
     bool Fixed = false;
-
+    ItemManager ItemManager;
+    PlayerInventory inventory;
     private void Awake()
     {
         GeneratorLight = transform.GetComponentInChildren<Light>();
+        
     }
-    public bool immediatelyUseable()
+    private void Start()
     {
-        return true;
+        ItemManager = GameManager.Inst.ItemManager;
+        inventory = GameManager.Inst.PlayerInventory;
     }
-
     public void objectIneractive()
-    {        
-        if (!Fixed)
+    {
+        if (GameManager.Inst.ItemManager.currentItemCount[(int)Itemlist.RepairKit] > 0)
         {
-            Fixed = true;
-            GeneratorLight.color = Color.green;
-            GameManager.Inst.KeyRoomBattery.BatteryCount += 1;
-        }
+            if (!Fixed)
+            {
+                Fixed = true;
+                GeneratorLight.color = Color.green;
+                GameManager.Inst.KeyRoomBattery.BatteryCount += 1;
+                ItemManager.currentItemCount[(int)Itemlist.RepairKit]--;
+                if (ItemManager.currentItemCount[(int)Itemlist.RepairKit] == 0)
+                {
+                    ItemManager.ItemDelete(Itemlist.RepairKit);
+                }
+            }
+        }       
     }
 
     public string objectName()
-    {
+    {        
         if (!Fixed)
         {
             return "발전기(수리필요)";
@@ -38,8 +48,13 @@ public class Generator : MonoBehaviour, UseableObject
         }
     }
 
-    public int maxCount()
+    public bool canInteractive()
     {
-        return 0;
+        bool result = false;
+        return result;
+    }
+
+    public void UseItem()
+    {       
     }
 }

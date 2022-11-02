@@ -100,6 +100,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d893fb0-5ddd-4bc7-bc64-b146b8628560"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""GunReload"",
                     ""type"": ""Button"",
                     ""id"": ""d3eee423-1ece-473b-af66-bd81ddc2eb5e"",
@@ -107,6 +116,60 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""itemselect1"",
+                    ""type"": ""Button"",
+                    ""id"": ""55fa2228-6b40-4790-84be-278acf73862e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""itemselect2"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ede37f7-8d0d-4b36-8324-e31c338b3989"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""itemselect3"",
+                    ""type"": ""Button"",
+                    ""id"": ""53bcfe48-d05a-417e-820e-b734c8238306"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""itemselect4"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f6f69ee-c7b9-4e09-aa6a-98a715ee71ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""itemselect5"",
+                    ""type"": ""Button"",
+                    ""id"": ""18944db9-8d8e-45ec-8dde-d0184cbd9dd3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""itemselect6"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee696b84-7e71-4262-a925-26444a64a2b8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -252,6 +315,83 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""action"": ""GunReload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19fbd7fc-7c5f-49ef-a7e5-de24f675b9b3"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""itemselect1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2df94f81-2f35-467f-a5b2-a99c9829cae3"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""itemselect2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e42afb2d-9ed3-42bc-ac97-c2ea39f20ebe"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""itemselect3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19d4bf1d-9378-49bc-91e5-e9bab5a6720e"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""itemselect4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e77ff796-e2af-46a2-b556-d46046ce31ef"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""itemselect5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19e51853-66cb-466b-bc26-12ccaf48c402"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""itemselect6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1802ef65-2a65-4136-8498-f8e71bd9a530"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -274,7 +414,14 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Player_Interactive = m_Player.FindAction("Interactive", throwIfNotFound: true);
         m_Player_Sit = m_Player.FindAction("Sit", throwIfNotFound: true);
         m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
+        m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         m_Player_GunReload = m_Player.FindAction("GunReload", throwIfNotFound: true);
+        m_Player_itemselect1 = m_Player.FindAction("itemselect1", throwIfNotFound: true);
+        m_Player_itemselect2 = m_Player.FindAction("itemselect2", throwIfNotFound: true);
+        m_Player_itemselect3 = m_Player.FindAction("itemselect3", throwIfNotFound: true);
+        m_Player_itemselect4 = m_Player.FindAction("itemselect4", throwIfNotFound: true);
+        m_Player_itemselect5 = m_Player.FindAction("itemselect5", throwIfNotFound: true);
+        m_Player_itemselect6 = m_Player.FindAction("itemselect6", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -342,7 +489,14 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interactive;
     private readonly InputAction m_Player_Sit;
     private readonly InputAction m_Player_Shot;
+    private readonly InputAction m_Player_UseItem;
     private readonly InputAction m_Player_GunReload;
+    private readonly InputAction m_Player_itemselect1;
+    private readonly InputAction m_Player_itemselect2;
+    private readonly InputAction m_Player_itemselect3;
+    private readonly InputAction m_Player_itemselect4;
+    private readonly InputAction m_Player_itemselect5;
+    private readonly InputAction m_Player_itemselect6;
     public struct PlayerActions
     {
         private @PlayerController m_Wrapper;
@@ -355,7 +509,14 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @Interactive => m_Wrapper.m_Player_Interactive;
         public InputAction @Sit => m_Wrapper.m_Player_Sit;
         public InputAction @Shot => m_Wrapper.m_Player_Shot;
+        public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
         public InputAction @GunReload => m_Wrapper.m_Player_GunReload;
+        public InputAction @itemselect1 => m_Wrapper.m_Player_itemselect1;
+        public InputAction @itemselect2 => m_Wrapper.m_Player_itemselect2;
+        public InputAction @itemselect3 => m_Wrapper.m_Player_itemselect3;
+        public InputAction @itemselect4 => m_Wrapper.m_Player_itemselect4;
+        public InputAction @itemselect5 => m_Wrapper.m_Player_itemselect5;
+        public InputAction @itemselect6 => m_Wrapper.m_Player_itemselect6;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -389,9 +550,30 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Shot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
                 @Shot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
                 @Shot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
+                @UseItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
                 @GunReload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGunReload;
                 @GunReload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGunReload;
                 @GunReload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGunReload;
+                @itemselect1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect1;
+                @itemselect1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect1;
+                @itemselect1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect1;
+                @itemselect2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect2;
+                @itemselect2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect2;
+                @itemselect2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect2;
+                @itemselect3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect3;
+                @itemselect3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect3;
+                @itemselect3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect3;
+                @itemselect4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect4;
+                @itemselect4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect4;
+                @itemselect4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect4;
+                @itemselect5.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect5;
+                @itemselect5.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect5;
+                @itemselect5.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect5;
+                @itemselect6.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect6;
+                @itemselect6.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect6;
+                @itemselect6.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect6;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -420,9 +602,30 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Shot.started += instance.OnShot;
                 @Shot.performed += instance.OnShot;
                 @Shot.canceled += instance.OnShot;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
                 @GunReload.started += instance.OnGunReload;
                 @GunReload.performed += instance.OnGunReload;
                 @GunReload.canceled += instance.OnGunReload;
+                @itemselect1.started += instance.OnItemselect1;
+                @itemselect1.performed += instance.OnItemselect1;
+                @itemselect1.canceled += instance.OnItemselect1;
+                @itemselect2.started += instance.OnItemselect2;
+                @itemselect2.performed += instance.OnItemselect2;
+                @itemselect2.canceled += instance.OnItemselect2;
+                @itemselect3.started += instance.OnItemselect3;
+                @itemselect3.performed += instance.OnItemselect3;
+                @itemselect3.canceled += instance.OnItemselect3;
+                @itemselect4.started += instance.OnItemselect4;
+                @itemselect4.performed += instance.OnItemselect4;
+                @itemselect4.canceled += instance.OnItemselect4;
+                @itemselect5.started += instance.OnItemselect5;
+                @itemselect5.performed += instance.OnItemselect5;
+                @itemselect5.canceled += instance.OnItemselect5;
+                @itemselect6.started += instance.OnItemselect6;
+                @itemselect6.performed += instance.OnItemselect6;
+                @itemselect6.canceled += instance.OnItemselect6;
             }
         }
     }
@@ -446,6 +649,13 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnInteractive(InputAction.CallbackContext context);
         void OnSit(InputAction.CallbackContext context);
         void OnShot(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
         void OnGunReload(InputAction.CallbackContext context);
+        void OnItemselect1(InputAction.CallbackContext context);
+        void OnItemselect2(InputAction.CallbackContext context);
+        void OnItemselect3(InputAction.CallbackContext context);
+        void OnItemselect4(InputAction.CallbackContext context);
+        void OnItemselect5(InputAction.CallbackContext context);
+        void OnItemselect6(InputAction.CallbackContext context);
     }
 }

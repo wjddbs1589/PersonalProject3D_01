@@ -6,32 +6,45 @@ using static ItemManager;
 public class Potion : MonoBehaviour, UseableObject
 {
     Player player;
+    ItemManager itemManager;
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
     }
-    public bool immediatelyUseable()
+    private void Start()
     {
-        
-        return true;
+        itemManager = GameManager.Inst.ItemManager;
     }
 
     public void objectIneractive()
     {
-        if (player.HP < 100)
+        if (GameManager.Inst.ItemManager.saveItem(Itemlist.HpPotion))
         {
-            player.HP += 20.0f;
             Destroy(gameObject);
         }
+        //if (player.HP < 100)
+        //{
+        //    player.HP += 20.0f;
+        //    Destroy(transform.parent.gameObject);
+        //    Destroy(gameObject);
+        //}
     }
-
     public string objectName()
     {
         return "체력포션";
     }
 
-    public int maxCount()
+    public void UseItem()
     {
-        return 0;
+        if (player.HP < 100)
+        {
+            player.HP += 20.0f;
+            itemManager.currentItemCount[(int)Itemlist.HpPotion]--;
+            if (itemManager.currentItemCount[(int)Itemlist.HpPotion] == 0)
+            {
+                itemManager.ItemDelete(Itemlist.HpPotion);
+                Destroy(gameObject);
+            }
+        }
     }
 }

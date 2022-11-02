@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 534519619850987299}
   - component: {fileID: 534519619841886405}
+  - component: {fileID: 2257255745596905735}
   m_Layer: 0
   m_Name: Handgun
   m_TagString: Untagged
@@ -54,6 +55,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2257255745596905735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534519619851287299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fe74a42426a1447b0c1b32e93b6806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reloading: 0
 --- !u!1 &2853143631485253893
 GameObject:
   m_ObjectHideFlags: 0

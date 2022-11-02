@@ -31,11 +31,11 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;              
-            DontDestroyOnLoad(this.gameObject); 
             player = FindObjectOfType<Player>();
+            keyRoomBattery = FindObjectOfType<KeyRoomBattery>();
             itemManager = FindObjectOfType<ItemManager>();
             playerInventory = FindObjectOfType<PlayerInventory>();
-            keyRoomBattery = FindObjectOfType<KeyRoomBattery>();
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {

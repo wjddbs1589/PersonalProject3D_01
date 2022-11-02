@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Handgun : MonoBehaviour
+public class Handgun : MonoBehaviour, UseableObject
 {
     float originDelay = 1.0f;
     float shotDelay = 1.0f;
@@ -12,7 +12,8 @@ public class Handgun : MonoBehaviour
     Animator anim;
     GameObject reloadText;
 
-    int MaxBullet = 50; //총알 최대 소지 갯수 
+    int maxBullet = 50;
+    public int MaxBullet => maxBullet; //총알 최대 소지 갯수 
     //----------------------------------------------------------------------------
     int canReloadBulletCount = 15; // 장전가능한 총알 개수
     int reloadedBullet = 15;       // 장전된 총알 개수
@@ -53,6 +54,16 @@ public class Handgun : MonoBehaviour
             shotDelay = Mathf.Clamp(shotDelay, 0.0f, originDelay);
         }
     }
+    public void objectIneractive()
+    {
+        shotHandgun();
+    }
+
+    public string objectName()
+    {
+        return "권총";
+    }
+
     public void shotHandgun()
     {
         if (shotDelay <= 0.0f && !Reloading)
@@ -104,5 +115,10 @@ public class Handgun : MonoBehaviour
             noBullet = true;
             anim.SetBool("noBullet", true);
         }
+    }
+
+    public void UseItem()
+    {
+        
     }
 }

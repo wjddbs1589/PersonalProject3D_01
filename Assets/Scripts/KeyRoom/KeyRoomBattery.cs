@@ -23,8 +23,8 @@ public class KeyRoomBattery : MonoBehaviour
     //-------------------------------------------------------
 
     private void Awake()
-    {
-        batterys = GetComponentsInChildren<Battery>();
+    {        
+        batterys = GetComponentsInChildren<Battery>();        
     }
     private void Start()
     {
@@ -34,10 +34,10 @@ public class KeyRoomBattery : MonoBehaviour
     /// <summary>
     /// 발전기가 작동되어 불이 켜질때 마다 자식오브젝트의 2번째 material의 _EmissionColor를 변경하는 함수
     /// </summary>
-    /// <param name="obj">발전기 작동 카운트</param>
-    private void BatteryLightChange(int obj)
-    {        
-        materials = batterys[obj - 1].gameObject.GetComponent<Renderer>().materials;
+    /// <param name="count">발전기 작동 카운트</param>
+    private void BatteryLightChange(int count)
+    {
+        materials = batterys[count-1].gameObject.GetComponent<Renderer>().materials;
         materials[1].SetColor("_EmissionColor",Color.green);
     }
 }

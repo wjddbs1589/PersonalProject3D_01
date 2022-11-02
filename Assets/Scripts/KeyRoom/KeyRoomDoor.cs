@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KeyRoomDoor : MonoBehaviour, UseableObject
@@ -30,7 +31,7 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
 
     public void objectIneractive()
     {
-        if (canOpenDoor) //문을 열수 있는 상태일때
+        if (canInteractive()) //문을 열수 있는 상태일때
         {
             if (checkDoorOpen) //문이 열려있을 때
             {
@@ -62,8 +63,18 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
         }
     }
 
-    public int maxCount()
+    public bool canInteractive()
     {
-        return 0;
+        bool result = false;
+        if (canOpenDoor)
+        {
+            result = true;
+        }
+        return result;
+    }
+
+    public void UseItem()
+    {
+        
     }
 }

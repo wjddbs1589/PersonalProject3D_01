@@ -7,27 +7,30 @@ public class GainBullet : MonoBehaviour, UseableObject
     Handgun bullet;
     private void Awake()
     {
-        bullet = GameObject.Find("Handgun").gameObject.GetComponent<Handgun>();
-    }
-
-    public bool immediatelyUseable()
-    {
-        return true;
+        bullet = GameObject.Find("Handgun").gameObject.GetComponent<Handgun>();       
     }
 
     public void objectIneractive()
     {
-        bullet.HaveBullet += 15;
-        Destroy(gameObject);
+        if(bullet.HaveBullet < bullet.MaxBullet)
+        {
+            bullet.HaveBullet += 15;
+            Destroy(gameObject);
+        }
     }
 
     public string objectName()
     {
-        return "총알";
+        string itemName = "총알";
+        if (bullet.HaveBullet == bullet.MaxBullet)
+        {
+            itemName = "더 이상 소지할 수 없습니다.";
+        }
+        return itemName;
     }
 
-    public int maxCount()
+    public void UseItem()
     {
-        return 0;
+       
     }
 }

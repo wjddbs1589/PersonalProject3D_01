@@ -7,10 +7,11 @@ using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem.HID;
 using InfimaGames.LowPolyShooterPack;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
-    float hp = 100.0f;
+    float hp = 80.0f;
     float maxHP = 100.0f;
     public float HP 
     {
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
     public float gravity = -9.81f;
 
     // 카메라 관련변수
-    GameObject cameraTarget; //카메라타겟, 시네머신카메라가 따라올 대상
+    public GameObject cameraTarget; //카메라타겟, 시네머신카메라가 따라올 대상
     Vector2 look;
     [Header("카메라최대/최소각도")]
     public float TopClamp = 60.0f;
@@ -70,7 +71,9 @@ public class Player : MonoBehaviour
 
     // 무기 - 권총
     Handgun handgun;
-    
+
+    //우클릭으로 사용할 아이템
+    ItemSelect selectItem;
 
     private void OnEnable()
     {
@@ -84,13 +87,27 @@ public class Player : MonoBehaviour
         actions.Player.Look.canceled += onLook;
         actions.Player.Interactive.performed += onInteractive;
         actions.Player.Sit.performed += onSit;
-        actions.Player.Shot.performed += onShot;
+        actions.Player.Shot.performed += Shot;
+        actions.Player.UseItem.performed += UseItem;
         actions.Player.GunReload.performed += onReload;
+        actions.Player.itemselect1.performed += select1Item;
+        actions.Player.itemselect2.performed += select2Item;
+        actions.Player.itemselect3.performed += select3Item;
+        actions.Player.itemselect4.performed += select4Item;
+        actions.Player.itemselect5.performed += select5Item;
+        actions.Player.itemselect6.performed += select6Item;
     }
     private void OnDisable()
     {
+        actions.Player.itemselect6.performed -= select6Item;
+        actions.Player.itemselect5.performed -= select5Item;
+        actions.Player.itemselect4.performed -= select4Item;
+        actions.Player.itemselect3.performed -= select3Item;
+        actions.Player.itemselect2.performed -= select2Item;
+        actions.Player.itemselect1.performed -= select1Item;
         actions.Player.GunReload.performed -= onReload;
-        actions.Player.Shot.performed -= onShot;
+        actions.Player.Shot.performed -= Shot;
+        actions.Player.UseItem.performed -= UseItem;
         actions.Player.Sit.performed -= onSit;
         actions.Player.Interactive.performed -= onInteractive;
         actions.Player.Look.canceled -= onLook;
@@ -103,11 +120,13 @@ public class Player : MonoBehaviour
         actions.Player.Disable();
     }
 
+    
+
     private void Awake()
     {
         actions = new();
         controller = GetComponent<CharacterController>();
-
+        selectItem = FindObjectOfType<ItemSelect>();
         cameraTarget = transform.GetChild(0).gameObject;
         playerLight = transform.GetChild(2).gameObject;
         FlashLight = playerLight.transform.GetComponent<Light>();
@@ -117,6 +136,7 @@ public class Player : MonoBehaviour
 
         handgun = cameraTarget.transform.Find("Handgun").gameObject.transform.GetComponent<Handgun>();
     }
+   
     private void Update()
     {
         Cursor.lockState = CursorLockMode.Locked;   // 게임 창 밖으로 마우스가 안나감, 마우스를 게임 중앙 좌표에 고정시키고 숨김
@@ -275,15 +295,65 @@ public class Player : MonoBehaviour
     {
         handgun.ReloadHandgun();        
     }
-
-    private void onShot(InputAction.CallbackContext _)
+    //아이템 선택 1~6
+    int selectedItemNumber = 0;
+    public int SelectedItemNumber
     {
-        if(!handgun.Reloading)
+        get => selectedItemNumber;
+        set
+        {
+            selectedItemNumber = value;
+            onItemChange?.Invoke(selectedItemNumber);
+        }
+    }
+    public Action<int> onItemChange;
+    private void select1Item(InputAction.CallbackContext _)
+    {
+        selectItem.preItemNum = SelectedItemNumber;
+        SelectedItemNumber = 0;           
+    }
+    private void select2Item(InputAction.CallbackContext _)
+    {
+        selectItem.preItemNum = SelectedItemNumber;
+        SelectedItemNumber = 1;
+    }
+    private void select3Item(InputAction.CallbackContext _)
+    {
+        selectItem.preItemNum = SelectedItemNumber;
+        SelectedItemNumber = 2;
+    }
+    private void select4Item(InputAction.CallbackContext _)
+    {
+        selectItem.preItemNum = SelectedItemNumber;
+        SelectedItemNumber = 3;
+    }
+    private void select5Item(InputAction.CallbackContext _)
+    {
+        selectItem.preItemNum = SelectedItemNumber;
+        SelectedItemNumber = 4;
+    }
+    private void select6Item(InputAction.CallbackContext _)
+    {
+        selectItem.preItemNum = SelectedItemNumber;
+        SelectedItemNumber = 5;
+    }
+    //우클릭으로 선택한 아이템 사용
+    private void UseItem(InputAction.CallbackContext _)
+    {
+        if (selectItem.nowItem.gameObject != null)
+        {
+            Debug.Log("아이템 사용");
+            selectItem.Use();
+        }
+    }
+    //사격 좌클릭
+    private void Shot(InputAction.CallbackContext _)
+    {
+        if (!handgun.Reloading)
         {
             handgun.shotHandgun();
             shotEffect();
         }
-        
     }
 
     // 1안. ray를 쏴서 명중시킨다

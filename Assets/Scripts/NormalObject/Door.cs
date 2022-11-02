@@ -6,7 +6,6 @@ using UnityEngine;
 public class Door : MonoBehaviour, UseableObject
 {
     Animator anim;
-    bool canOpenDoor = true;
     bool doorOpen = false;
     private void Awake()
     {
@@ -25,25 +24,19 @@ public class Door : MonoBehaviour, UseableObject
             doorOpen = true;
         }
     }
-    public bool immediatelyUseable()
-    {
-        if (canOpenDoor)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     public string objectName()
     {
         return "열기/닫기";
     }
 
-    public int maxCount()
+    public bool canInteractive()
     {
-        return 0;
+        bool result = true;
+        return result;
+    }
+
+    public void UseItem()
+    {
+        
     }
 }

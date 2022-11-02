@@ -78,6 +78,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "UseItem",
+                    "type": "Button",
+                    "id": "9d893fb0-5ddd-4bc7-bc64-b146b8628560",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "GunReload",
                     "type": "Button",
                     "id": "d3eee423-1ece-473b-af66-bd81ddc2eb5e",
@@ -85,6 +94,60 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "itemselect1",
+                    "type": "Button",
+                    "id": "55fa2228-6b40-4790-84be-278acf73862e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "itemselect2",
+                    "type": "Button",
+                    "id": "5ede37f7-8d0d-4b36-8324-e31c338b3989",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "itemselect3",
+                    "type": "Button",
+                    "id": "53bcfe48-d05a-417e-820e-b734c8238306",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "itemselect4",
+                    "type": "Button",
+                    "id": "5f6f69ee-c7b9-4e09-aa6a-98a715ee71ab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "itemselect5",
+                    "type": "Button",
+                    "id": "18944db9-8d8e-45ec-8dde-d0184cbd9dd3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "itemselect6",
+                    "type": "Button",
+                    "id": "ee696b84-7e71-4262-a925-26444a64a2b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -228,6 +291,83 @@
                     "processors": "",
                     "groups": "KeyBoardMouse",
                     "action": "GunReload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19fbd7fc-7c5f-49ef-a7e5-de24f675b9b3",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "itemselect1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2df94f81-2f35-467f-a5b2-a99c9829cae3",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "itemselect2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e42afb2d-9ed3-42bc-ac97-c2ea39f20ebe",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "itemselect3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19d4bf1d-9378-49bc-91e5-e9bab5a6720e",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "itemselect4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e77ff796-e2af-46a2-b556-d46046ce31ef",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "itemselect5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19e51853-66cb-466b-bc26-12ccaf48c402",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "itemselect6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1802ef65-2a65-4136-8498-f8e71bd9a530",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "UseItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
