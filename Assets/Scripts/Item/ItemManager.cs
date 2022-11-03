@@ -65,6 +65,7 @@ public class ItemManager : MonoBehaviour
             if (currentItemCount[itemNum] == 0 || currentItemCount[itemNum] == maxItemCount[itemNum])
             {
                 playerInventory.inventory[playerInventory.savePos] = SavedItem[itemNum];
+                playerInventory.insertItemImage(SavedItem[itemNum]);
                 currentItemCount[itemNum]++;
                 playerInventory.savePos++;
             }
@@ -91,12 +92,9 @@ public class ItemManager : MonoBehaviour
             {
                 for (int j = i; j < 5; j++)
                 {
-                    Debug.Log("인벤토리 이동");
-                    playerInventory.inventory[j] = playerInventory.inventory[j + 1];
+                    playerInventory.changeItemImage(j);
                 }
-                playerInventory.inventory[5] = null;
                 playerInventory.savePos--;
-
             }
         }
     }

@@ -7,11 +7,14 @@ public class GlowStick : MonoBehaviour, UseableObject
     Rigidbody rigid;
     ItemManager itemManager;
     public ItemUsePos itemUsePos;
+    public Sprite itemImagePrefab;
+    Player player;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
         itemUsePos = FindObjectOfType<ItemUsePos>();
+        player = GameManager.Inst.Player;
     }
     private void Start()
     {
@@ -32,19 +35,26 @@ public class GlowStick : MonoBehaviour, UseableObject
 
     public void UseItem()
     {
-        GameObject obj = Instantiate(GameManager.Inst.ItemManager.SavedItem[(int)Itemlist.GlowStick]);
-        obj.transform.position = itemUsePos.transform.position;
-        obj.GetComponent<Rigidbody>().useGravity = true;
-        obj.GetComponent<Collider>().isTrigger = false;
-
-        //rigid.AddForce(GameManager.Inst.Player.cameraTarget.transform.forward, ForceMode.Force);
-
-        itemManager.currentItemCount[(int)Itemlist.GlowStick]--;
-        if (itemManager.currentItemCount[(int)Itemlist.GlowStick] == 0)
+        if (itemManager.currentItemCount[(int)Itemlist.GlowStick] != 0)
         {
-            itemManager.ItemDelete(Itemlist.GlowStick);
-            Destroy(gameObject);
+            GameObject obj = Instantiate(GameManager.Inst.ItemManager.SavedItem[(int)Itemlist.GlowStick]);
+            obj.transform.position = itemUsePos.transform.position;
+            obj.GetComponent<Rigidbody>().useGravity = true;
+            obj.GetComponent<Collider>().isTrigger = false;
+
+            //rigid.AddForce(GameManager.Inst.Player.cameraTarget.transform.forward, ForceMode.Force);
+
+            itemManager.currentItemCount[(int)Itemlist.GlowStick]--;
+            if (itemManager.currentItemCount[(int)Itemlist.GlowStick] == 0)
+            {
+                itemManager.ItemDelete(Itemlist.GlowStick);
+                player.SelectedItemNumber -= 1;
+            }
         }
+        
     }
-   
+    public Sprite returnItemSprite()
+    {
+        return itemImagePrefab;
+    }
 }

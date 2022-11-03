@@ -57,4 +57,8 @@ public class Generator : MonoBehaviour, UseableObject
     public void UseItem()
     {       
     }
+    public Sprite returnItemSprite()
+    {
+        return null;
+    }
 }

@@ -19,5 +19,11 @@ public interface UseableObject
     /// 아이템을 사용하는 함수
     /// </summary>
     void UseItem();
+
+    /// <summary>
+    /// 현재 아이템의 스프라이트를 반환
+    /// </summary>
+    /// <returns>현재 아이템의 스프라이트</returns>
+    Sprite returnItemSprite();
     
 }

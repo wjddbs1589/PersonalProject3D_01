@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Oil : MonoBehaviour, UseableObject
 {
+    public Sprite itemImagePrefab;
     public void objectIneractive()
     {
         if (GameManager.Inst.ItemManager.saveItem(Itemlist.Oil))
@@ -19,5 +20,10 @@ public class Oil : MonoBehaviour, UseableObject
     public void UseItem()
     {
         
+    }
+
+    public Sprite returnItemSprite()
+    {
+        return itemImagePrefab;
     }
 }

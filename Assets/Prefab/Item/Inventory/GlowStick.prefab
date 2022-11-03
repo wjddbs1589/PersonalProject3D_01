@@ -223,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0381394ba4fab478128fd07a0863ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {fileID: 0}
+  itemUsePos: {fileID: 0}
+  itemImagePrefab: {fileID: 21300000, guid: 3eb55b5db464cf846aca0a7e04e60df1, type: 3}
 --- !u!1 &5159885420602704159
 GameObject:
   m_ObjectHideFlags: 0

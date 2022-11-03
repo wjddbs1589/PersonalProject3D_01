@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Handgun : MonoBehaviour, UseableObject
 {
@@ -11,6 +12,8 @@ public class Handgun : MonoBehaviour, UseableObject
     public bool Reloading = false;
     Animator anim;
     GameObject reloadText;
+
+    public Sprite itemImagePrefab;
 
     int maxBullet = 50;
     public int MaxBullet => maxBullet; //총알 최대 소지 갯수 
@@ -120,5 +123,10 @@ public class Handgun : MonoBehaviour, UseableObject
     public void UseItem()
     {
         
+    }
+
+    public Sprite returnItemSprite()
+    {
+        return itemImagePrefab;
     }
 }

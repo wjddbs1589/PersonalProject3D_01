@@ -77,4 +77,8 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
     {
         
     }
+    public Sprite returnItemSprite()
+    {
+        return null;
+    }
 }

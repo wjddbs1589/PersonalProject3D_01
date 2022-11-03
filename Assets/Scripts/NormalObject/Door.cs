@@ -39,4 +39,8 @@ public class Door : MonoBehaviour, UseableObject
     {
         
     }
+    public Sprite returnItemSprite()
+    {
+        return null;
+    }
 }

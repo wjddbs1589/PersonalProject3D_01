@@ -342,7 +342,6 @@ public class Player : MonoBehaviour
     {
         if (selectItem.nowItem.gameObject != null)
         {
-            Debug.Log("아이템 사용");
             selectItem.Use();
         }
     }

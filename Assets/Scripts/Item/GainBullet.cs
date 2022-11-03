@@ -5,6 +5,7 @@ using UnityEngine;
 public class GainBullet : MonoBehaviour, UseableObject
 {
     Handgun bullet;
+    public Sprite itemImagePrefab;
     private void Awake()
     {
         bullet = GameObject.Find("Handgun").gameObject.GetComponent<Handgun>();       
@@ -32,5 +33,10 @@ public class GainBullet : MonoBehaviour, UseableObject
     public void UseItem()
     {
        
+    }
+
+    public Sprite returnItemSprite()
+    {
+        return itemImagePrefab;
     }
 }

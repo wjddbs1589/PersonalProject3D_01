@@ -111,3 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7971aad5c9b6144a318edd3af06a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemImagePrefab: {fileID: 21300000, guid: 94bbffe7389460f43926b862bcc2b85b, type: 3}

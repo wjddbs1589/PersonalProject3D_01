@@ -4,7 +4,9 @@ using UnityEditor.Rendering;
 using UnityEngine;
 
 public class RepairKit : MonoBehaviour, UseableObject
-{    
+{
+    public Sprite itemImagePrefab;
+
     public void objectIneractive()
     {
         if (GameManager.Inst.ItemManager.saveItem(Itemlist.RepairKit))
@@ -21,5 +23,9 @@ public class RepairKit : MonoBehaviour, UseableObject
     public void UseItem()
     {
        
+    }
+    public Sprite returnItemSprite()
+    {
+        return itemImagePrefab;
     }
 }

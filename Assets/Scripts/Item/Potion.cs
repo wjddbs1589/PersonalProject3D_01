@@ -7,6 +7,7 @@ public class Potion : MonoBehaviour, UseableObject
 {
     Player player;
     ItemManager itemManager;
+    public Sprite itemImagePrefab;
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -46,5 +47,9 @@ public class Potion : MonoBehaviour, UseableObject
                 Destroy(gameObject);
             }
         }
+    }
+    public Sprite returnItemSprite()
+    {
+        return itemImagePrefab;
     }
 }

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8907c506c1d708f43bebcb1e8bd2ef0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemImagePrefab: {fileID: 21300000, guid: c6f092d8199783c4ab86eaf37fbb7023, type: 3}
 --- !u!64 &8514852982158248877
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -10,9 +10,6 @@ public class ItemSelect : MonoBehaviour
     public int preItemNum;
     public GameObject nowItem;
     UseableObject obj;
-    private void Awake()
-    {
-    }
     private void Start()
     {
         player = GameManager.Inst.Player;
@@ -21,7 +18,11 @@ public class ItemSelect : MonoBehaviour
 
     private void ItemChange(int itemNumber)
     {
-        if (player.SelectedItemNumber != 0 && GameManager.Inst.PlayerInventory.inventory[itemNumber] != null)
+        if(player.SelectedItemNumber == 0)
+        {
+            Destroy(nowItem);
+        }
+        else if (player.SelectedItemNumber != 0 && GameManager.Inst.PlayerInventory.inventory[itemNumber] != null)
         {
             Destroy(nowItem);
             nowItem = Instantiate(GameManager.Inst.PlayerInventory.inventory[itemNumber], itemPos.position, itemPos.transform.rotation);
