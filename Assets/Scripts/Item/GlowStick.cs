@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class GlowStick : MonoBehaviour, UseableObject
 {
@@ -42,9 +43,7 @@ public class GlowStick : MonoBehaviour, UseableObject
             obj.GetComponent<Rigidbody>().useGravity = true;
             obj.GetComponent<Collider>().isTrigger = false;
 
-            //rigid.AddForce(GameManager.Inst.Player.cameraTarget.transform.forward, ForceMode.Force);
-
-            itemManager.currentItemCount[(int)Itemlist.GlowStick]--;
+            itemManager.decreaseItemCount(Itemlist.GlowStick);
             if (itemManager.currentItemCount[(int)Itemlist.GlowStick] == 0)
             {
                 itemManager.ItemDelete(Itemlist.GlowStick);

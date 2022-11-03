@@ -22,16 +22,10 @@ public class ItemManager : MonoBehaviour
     // 권총/형광봉/기름통/수리키트/총알/포션 - 순서
 
     [Header("한칸에 들어가는 아이템 갯수")]
-    [SerializeField]int[] maxItemCount = {1,20,5,4,0,0};             //아이템 최대 소지수
+    [SerializeField]int[] maxItemCount = {1,20,5,4,0,20};             //인벤토리 한 칸에 소지가능한 아이템 수
 
     [Header("소지중인 아이템 종류별 갯수")]
     public int[] currentItemCount = {1,0,0,0,0,0};          //현재 소지 수
-
-    [Header("현재 칸에 있는 아이템 목록")]
-    [SerializeField] Itemlist[] haveItemlist;
-
-    [SerializeField] int[] itemCount = {0,0,0,0,0,0};
-    [SerializeField] int[] itemSavepos;
 
     public int[] maxSpawnCount = {0,20,5,4,20,20};          //아이템 스폰 최대수
     public int[] currentSpawnCount = { 0, 0, 0, 0, 0, 0 };  //현재 스폰된 수
@@ -40,18 +34,9 @@ public class ItemManager : MonoBehaviour
     {
         playerInventory = GameManager.Inst.PlayerInventory;
 
-        haveItemlist = new Itemlist[6];
-
         playerInventory.inventory[playerInventory.savePos] = SavedItem[(int)Itemlist.Handgun];
         currentItemCount[(int)Itemlist.Handgun]++;
         playerInventory.savePos++;
-
-        //가지고 잇는 아이템 초기화
-        //for(int i = 0; i < 6; i++)
-        //{
-        //    currentItemCount[i] = 0;
-        //    currentSpawnCount[i] = 0;
-        //}
     }
 
     public bool saveItem(Itemlist itemName)
@@ -66,14 +51,15 @@ public class ItemManager : MonoBehaviour
             {
                 playerInventory.inventory[playerInventory.savePos] = SavedItem[itemNum];
                 playerInventory.insertItemImage(SavedItem[itemNum]);
-                currentItemCount[itemNum]++;
+
+                increaseItemCount(itemName);
+
                 playerInventory.savePos++;
             }
             else //있으면 갯수만 증가
             {
-                currentItemCount[itemNum]++;
+                increaseItemCount(itemName);
             }
-            Debug.Log($"{itemName}을 얻었습니다.");
             result = true;
         }
         else
@@ -98,4 +84,35 @@ public class ItemManager : MonoBehaviour
             }
         }
     }
+
+    void increaseItemCount(Itemlist item)
+    {
+        GameObject obj = SavedItem[(int)item]; //얻은 아이템 저장
+
+        //인벤토리칸 돌며 얻은아이템 찾음
+        for (int i = 1; i < 6; i++)
+        {
+            if (playerInventory.inventory[i] == obj) //아이템을 찾았으면 개수 증가시키고 숫자 표시 바꿈
+            {
+                currentItemCount[(int)item] += 1;
+                playerInventory.itemCountText[i].text = currentItemCount[(int)item].ToString();
+            }
+                
+        }
+    }
+    public void decreaseItemCount(Itemlist item)
+    {
+        GameObject obj = SavedItem[(int)item]; 
+
+        for (int i = 1; i < 6; i++)
+        {
+            if (playerInventory.inventory[i] == obj) 
+            {
+                currentItemCount[(int)item] -= 1;
+                playerInventory.itemCountText[i].text = currentItemCount[(int)item].ToString();
+            }
+
+        }
+    }
+
 }

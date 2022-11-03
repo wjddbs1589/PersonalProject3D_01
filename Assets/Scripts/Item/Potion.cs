@@ -40,7 +40,7 @@ public class Potion : MonoBehaviour, UseableObject
         if (player.HP < 100)
         {
             player.HP += 20.0f;
-            itemManager.currentItemCount[(int)Itemlist.HpPotion]--;
+            itemManager.decreaseItemCount(Itemlist.HpPotion);
             if (itemManager.currentItemCount[(int)Itemlist.HpPotion] == 0)
             {
                 itemManager.ItemDelete(Itemlist.HpPotion);

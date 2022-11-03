@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
+using TMPro;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField]Image[] itemSprite; //인벤토리에서 아이템의 이미지를 저장할 배열
 
+    public TextMeshProUGUI[] itemCountText;
     private void Awake()
     {
         inventory = new GameObject[6];
@@ -25,6 +27,7 @@ public class PlayerInventory : MonoBehaviour
         {
             itemSprite[i] = transform.GetChild(i).GetComponent<Image>();
         }
+        itemCountText = GetComponentsInChildren<TextMeshProUGUI>();
     }
 
     //아이템을 가지고 있는지 확인, 맵에 여러 기믹에 상호작용전 확인용
@@ -66,13 +69,17 @@ public class PlayerInventory : MonoBehaviour
         {
             inventory[itemPos] = inventory[itemPos + 1];                                                          //뒤의 아이템을 당겨옴
             itemSprite[itemPos].sprite = inventory[itemPos + 1].GetComponent<UseableObject>().returnItemSprite(); //이미지 당겨옴
+            itemCountText[itemPos].text = itemCountText[itemPos + 1].text;                                                  //아이템 개수 당겨옴
             itemSprite[itemPos + 1].sprite = blankInvetoryImage;                                                  //당겨진칸 이미지 비우기
             inventory[itemPos + 1] = null;                                                                        //당겨진칸 아이템 비우기
+            itemCountText[itemPos + 1].text = "";                                                                    //당겨진칸 아이템수 비우기
         }
         else
         {
             inventory[itemPos] = null;
             itemSprite[itemPos].sprite = blankInvetoryImage;
+            itemCountText[itemPos].text = "";
         }
     }
+
 }
