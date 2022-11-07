@@ -351,15 +351,7 @@ public class Player : MonoBehaviour
         if (!handgun.Reloading)
         {
             handgun.shotHandgun();
-            shotEffect();
         }
-    }
-
-    // 1안. ray를 쏴서 명중시킨다
-    // 2안. 총알을 쏴서 명중시킨다 
-    private void shotEffect()
-    {
-
     }
 
     /// <summary>

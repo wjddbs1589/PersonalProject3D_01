@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652626223}
+  - component: {fileID: 1285766506}
   m_Layer: 0
   m_Name: ItemPos
   m_TagString: Untagged
@@ -24,13 +25,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652626222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.15, z: 0.5}
+  m_LocalPosition: {x: -0.2, y: -0.15, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4482042600083961207}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1285766506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652626222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23cb94ccd061af4380f87e2f053a727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1545091733986530056
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +73,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2913465747614110987}
+  - {fileID: 7307993051690189317}
   - {fileID: 652626223}
   m_Father: {fileID: 4396323988989994578}
   m_RootOrder: 0
@@ -79,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPos: {fileID: 652626223}
   preItemNum: 0
+  nowItem: {fileID: 0}
 --- !u!1 &2797250541841757915
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8514965023238271788}
   - component: {fileID: 2640221588180275242}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: PlayerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,6 +280,7 @@ MonoBehaviour:
   sitSpeed: 5
   onSprint: 0
   gravity: -9.81
+  cameraTarget: {fileID: 0}
   TopClamp: 60
   BottomClamp: -45
 --- !u!1 &5567048337046776825
@@ -408,7 +423,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 8640345886310512859}
---- !u!1001 &3387915740030923304
+--- !u!1001 &7062148020375495974
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -477,9 +492,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b94d5b5b2229d214391b5436e405040f, type: 3}
---- !u!4 &2913465747614110987 stripped
+--- !u!4 &7307993051690189317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 534519619850987299, guid: b94d5b5b2229d214391b5436e405040f,
     type: 3}
-  m_PrefabInstance: {fileID: 3387915740030923304}
+  m_PrefabInstance: {fileID: 7062148020375495974}
   m_PrefabAsset: {fileID: 0}

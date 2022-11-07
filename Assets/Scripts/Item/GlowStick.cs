@@ -7,7 +7,7 @@ public class GlowStick : MonoBehaviour, UseableObject
 {
     Rigidbody rigid;
     ItemManager itemManager;
-    public ItemUsePos itemUsePos;
+    ItemUsePos itemUsePos;
     public Sprite itemImagePrefab;
     Player player;
     private void Awake()
@@ -15,10 +15,10 @@ public class GlowStick : MonoBehaviour, UseableObject
         rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
         itemUsePos = FindObjectOfType<ItemUsePos>();
-        player = GameManager.Inst.Player;
     }
     private void Start()
     {
+        player = GameManager.Inst.Player;
         itemManager = GameManager.Inst.ItemManager;
     }
     public void objectIneractive()

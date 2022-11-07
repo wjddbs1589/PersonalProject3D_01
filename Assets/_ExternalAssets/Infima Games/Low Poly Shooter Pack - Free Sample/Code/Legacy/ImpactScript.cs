@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ImpactScript : MonoBehaviour {
@@ -19,7 +19,7 @@ public class ImpactScript : MonoBehaviour {
 		audioSource.clip = impactSounds
 			[Random.Range(0, impactSounds.Length)];
 		//Play the random impact sound
-		audioSource.Play();
+		//audioSource.Play();
 	}
 	
 	private IEnumerator DespawnTimer() {

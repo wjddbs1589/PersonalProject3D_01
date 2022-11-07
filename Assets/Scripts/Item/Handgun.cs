@@ -12,8 +12,10 @@ public class Handgun : MonoBehaviour, UseableObject
     public bool Reloading = false;
     Animator anim;
     GameObject reloadText;
-
     public Sprite itemImagePrefab;
+
+    //public GameObject bullet;
+    public Transform bulletPos;
 
     int maxBullet = 50;
     public int MaxBullet => maxBullet; //총알 최대 소지 갯수 
@@ -73,6 +75,9 @@ public class Handgun : MonoBehaviour, UseableObject
         {
             if (!noBullet)
             {
+                shotDelay = originDelay;
+                //GameObject obj =  Instantiate(bullet, bulletPos);
+                //obj.transform.parent = null;
                 anim.SetTrigger("Shot");
             }
             else
@@ -122,7 +127,7 @@ public class Handgun : MonoBehaviour, UseableObject
 
     public void UseItem()
     {
-        
+        shotHandgun();
     }
 
     public Sprite returnItemSprite()
