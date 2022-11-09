@@ -29,10 +29,10 @@ public class Player : MonoBehaviour
     CharacterController controller;
     Vector2 inputMove;
     Vector3 moveDir;
-    public float moveSpeed = 10.0f;
-    public float walkSpeed = 10.0f;
-    public float runSpeed = 15.0f;
-    public float sitSpeed = 5.0f;
+    public float moveSpeed = 5.0f;
+    public float walkSpeed = 5.0f;
+    public float runSpeed = 10.0f;
+    public float sitSpeed = 2.5f;
 
     //달리기 여부
     public bool onSprint = false;

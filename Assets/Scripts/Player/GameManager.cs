@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator respawnTimer()
     {
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(30.0f);
         Debug.Log("몬스터 재 생성");
         monsterSpawner.spawnMonster();
         monsterDead = false;

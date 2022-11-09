@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Handgun : MonoBehaviour, UseableObject
 {
-    float originDelay = 1.0f;
-    float shotDelay = 1.0f;
+    float originDelay = 0.3f;
+    float shotDelay = 0.3f;
     bool noBullet = false;
     public bool Reloading = false;
     Animator anim;
@@ -76,8 +76,6 @@ public class Handgun : MonoBehaviour, UseableObject
             if (!noBullet)
             {
                 shotDelay = originDelay;
-                //GameObject obj =  Instantiate(bullet, bulletPos);
-                //obj.transform.parent = null;
                 anim.SetTrigger("Shot");
             }
             else

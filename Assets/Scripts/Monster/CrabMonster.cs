@@ -65,15 +65,16 @@ public class CrabMonster : MonoBehaviour
 
     bool staying = false; // 머무르는 코루틴이 여러번 실행되는것 방지
     //-------------------------------------------
-    Vector3 targetPos;
     GameObject target;
     float sightRange = 7.0f; 
     float sightAngle = 90.0f;   //-45 ~ +45 범위
 
-    float attackCoolTimeOrigin = 3.0f;
+    float attackCoolTimeOrigin = 2.0f;
     float attackCoolTime = 0.0f;
 
     bool useRecognizeAnimation = true;
+
+    Transform destination;
 
     //-------------------------------------------
     private void Awake()
@@ -87,15 +88,7 @@ public class CrabMonster : MonoBehaviour
         MonsterState = monsterState.idle;
     }
 
-    private void monsterDead()
-    {
-        if (GameManager.Inst.MonsterDead == false)
-        {
-            MonsterState = monsterState.die;
-            GameManager.Inst.MonsterDead = true;
-            Destroy(gameObject);
-        }            
-    }
+   
     private void Update()
     {
         if (agent.pathPending) // navmesh가 도중에 경로를 재탐색 하여 거리가 0이 되는 경우를 방지. 경로가 계산될때까지 호출 무시
@@ -121,7 +114,7 @@ public class CrabMonster : MonoBehaviour
                     attack();
                     break;
                 case monsterState.die:
-                    anim.SetTrigger("Die");
+                    monsterDead();
                     break;
                 default:
                     break;
@@ -150,7 +143,7 @@ public class CrabMonster : MonoBehaviour
             MonsterState = monsterState.move;
             anim.SetBool("Moving", true);
             int randNum = Random.Range(1, 23);
-            Transform destination = GameManager.Inst.MonsterSpawner.spawnPos[randNum];
+            destination = GameManager.Inst.MonsterSpawner.spawnPos[randNum];
             agent.SetDestination(destination.position);
             staying = false;
         }
@@ -179,15 +172,13 @@ public class CrabMonster : MonoBehaviour
             {
                 if (!BlockByWall(targetPosition)) // 플레이어의 현재 위치가 벽을 사이에 두고 있는지 확인
                 {
-                    targetPos = targetPosition;
                     target = colliders[0].gameObject;
                     Debug.Log("시야내에서 발견됨");
                     MonsterState = monsterState.recognition;
                 }
             }
-            if((targetPosition-transform.position).sqrMagnitude < (sightRange*0.5)* (sightRange * 0.5)) // 몬스터와 가까운 거리에 있으면
+            else if((targetPosition-transform.position).sqrMagnitude < (sightRange*0.5)* (sightRange * 0.5)) // 몬스터와 가까운 거리에 있으면
             {
-                targetPos = targetPosition;
                 Debug.Log("근처에서 발견됨");
                 target = colliders[0].gameObject;
                 MonsterState = monsterState.recognition;
@@ -220,10 +211,11 @@ public class CrabMonster : MonoBehaviour
     void recognizePlayer()
     {
         useRecognizeAnimation = false;
-        agent.SetDestination(target.transform.position);
+        anim.SetBool("Moving", true);
+        transform.LookAt(target.transform.position);
         agent.speed = 0.0f;
-        Debug.Log($"recognize:{useRecognizeAnimation}=>인식애니메이션 재생");
         int IntimidateType = Random.Range(1, 4);
+        Debug.Log($"recognize:{IntimidateType}=>인식애니메이션 재생");
         anim.SetInteger("FindPlayer", IntimidateType);
     }
     void changeToChase()
@@ -231,30 +223,45 @@ public class CrabMonster : MonoBehaviour
         MonsterState = monsterState.chase;
         useRecognizeAnimation = true;
         anim.SetInteger("FindPlayer", 0);
-        agent.speed = 5.0f;
+        agent.speed = 7.0f;
     }
 
     //플레이어 추격-----------------------------------------------------------------------------------------------------------------------------------------------
+    float chaseTime = 10.0f;
+    float originChaseTime = 10.0f;
     void ChasePlayer()
     {
         agent.SetDestination(target.transform.position);
-        //anim.SetInteger("FindPlayer", 0);
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             MonsterState = monsterState.attack;
         }
+
+        if (agent.remainingDistance > agent.stoppingDistance * 1.5f)
+        {
+            chaseTime -= Time.deltaTime;
+            if (chaseTime <= 0)
+            {
+                agent.SetDestination(destination.position);
+                MonsterState = monsterState.idle;
+                agent.speed = 5.0f;
+                chaseTime = originChaseTime;
+            }
+        }
     }
     //공격 -----------------------------------------------------------------------------------------------------------------------------------------------
+   
     void attack()
-    {
+    {        
         agent.SetDestination(target.transform.position);
+        transform.LookAt(target.transform.position);
         anim.SetBool("Moving", true);
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
+            chaseTime = originChaseTime;
             anim.SetBool("Moving", false);
             if (attackCoolTime <= 0)
             {
-                Debug.Log("플레이어 공격");
                 int AttackType = Random.Range(1, 6);
                 switch (AttackType)
                 {
@@ -281,15 +288,26 @@ public class CrabMonster : MonoBehaviour
                 attackCoolTime -= Time.deltaTime;
             }
         }
+        else
+        {
+            MonsterState = monsterState.chase;
+        }
 
-        //if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= agent.stoppingDistance)
-        //{
-        //    Debug.Log("타겟이 이동하였습니다. 추격합니다.");
-        //    MonsterState = monsterState.chase;
-        //}
-
+        
     }
-    // 시야범위 및 탐지범위 표시-----------------------------------------------------------------------------------------------------------------------------------------------
+    //몬스터 사망------------------------------------------------------------------------
+    private void monsterDead()
+    {
+        if (GameManager.Inst.MonsterDead == false)
+        {
+            anim.SetTrigger("Die");
+            MonsterState = monsterState.die;
+            GameManager.Inst.MonsterDead = true;
+            Destroy(gameObject, 5.0f);
+        }
+    }
+
+    // 시야범위 및 탐지범위 표시(기즈모)-----------------------------------------------------------------------------------------------------------------------------------------------
     private void OnDrawGizmos()
     {
         Handles.color = Color.green;

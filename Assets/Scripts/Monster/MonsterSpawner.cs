@@ -13,6 +13,8 @@ public class MonsterSpawner : MonoBehaviour
     private void Start()
     {
         spawnMonster();
+        spawnMonster();
+        spawnMonster();
     }
     public void spawnMonster()
     {
