@@ -26,20 +26,7 @@ public class GameManager : MonoBehaviour
     //---------------------------------------------
     MonsterSpawner monsterSpawner;
     public MonsterSpawner MonsterSpawner => monsterSpawner;
-
-    bool monsterDead = false;
-    public bool MonsterDead
-    {
-        get => monsterDead;
-        set 
-        {
-            monsterDead = value;
-            if(monsterDead == true)
-            {
-                monsterRespawn();
-            }
-        }
-    } 
+    
     //---------------------------------------------
     private void Awake()
     {
@@ -72,6 +59,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(30.0f);
         Debug.Log("몬스터 재 생성");
         monsterSpawner.spawnMonster();
-        monsterDead = false;
     }
 }

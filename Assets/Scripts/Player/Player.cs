@@ -9,7 +9,7 @@ using UnityEngine.InputSystem.HID;
 using InfimaGames.LowPolyShooterPack;
 using Unity.VisualScripting;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, HealthInfoManager
 {
     float hp = 80.0f;
     float maxHP = 100.0f;
@@ -392,5 +392,10 @@ public class Player : MonoBehaviour
             angle -= 360f;
         }
         return Mathf.Clamp(angle, Min, Max);
+    }
+
+    public void takeDamage(float damage)
+    {
+        HP -= damage;
     }
 }

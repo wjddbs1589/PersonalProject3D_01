@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Handgun : MonoBehaviour, UseableObject
 {
+    float damage = 15.0f;
     float originDelay = 0.3f;
     float shotDelay = 0.3f;
     bool noBullet = false;
@@ -75,6 +76,12 @@ public class Handgun : MonoBehaviour, UseableObject
         {
             if (!noBullet)
             {
+                Ray ray = new(transform.position, transform.forward);
+                if(Physics.Raycast(ray, out RaycastHit hit, 1000.0f, LayerMask.GetMask("Monster")))
+                {
+                    hit.transform.GetComponent<HealthInfoManager>().takeDamage(damage);
+                }
+                Debug.DrawRay(transform.position, transform.forward * 1000.0f, Color.green);
                 shotDelay = originDelay;
                 anim.SetTrigger("Shot");
             }

@@ -16,10 +16,11 @@ public enum monsterState
     die
 }
 
-public class CrabMonster : MonoBehaviour
+public class CrabMonster : MonoBehaviour, HealthInfoManager
 {
     NavMeshAgent agent;
     Animator anim;
+
     //-----------------------------------
     float monsterHP = 50; 
     public float HP
@@ -30,7 +31,7 @@ public class CrabMonster : MonoBehaviour
             monsterHP = value;
             if (monsterHP <= 0.0)
             {
-                changeMonsterHP?.Invoke();
+                MonsterState = monsterState.die;
             }
         }
     }
@@ -73,9 +74,12 @@ public class CrabMonster : MonoBehaviour
     float attackCoolTime = 0.0f;
 
     bool useRecognizeAnimation = true;
+    bool alive = true;
 
     Transform destination;
-
+    float fixedSpeed = 0.0f;
+    float idleSpeed = 5.0f;
+    float chaseSpeed = 7.0f;
     //-------------------------------------------
     private void Awake()
     {
@@ -84,7 +88,6 @@ public class CrabMonster : MonoBehaviour
     }
     private void Start()
     {
-        changeMonsterHP += monsterDead;
         MonsterState = monsterState.idle;
     }
 
@@ -93,33 +96,36 @@ public class CrabMonster : MonoBehaviour
     {
         if (agent.pathPending) // navmesh가 도중에 경로를 재탐색 하여 거리가 0이 되는 경우를 방지. 경로가 계산될때까지 호출 무시
             return;
-        // 인식 애니메이션을 사용중일땐 일반행동 불가
-        if(useRecognizeAnimation)
+        if (alive)
         {
-            switch (MonsterState)
+            // 인식 애니메이션을 사용중일땐 일반행동 불가
+            if (useRecognizeAnimation)
             {
-                case monsterState.idle: // 패트롤 지점에 도착 했을때
-                    idle();
-                    break;
-                case monsterState.move: // 패트롤 지점으로 이동       
-                    move();
-                    break;
-                case monsterState.recognition: // 플레이어를 찾았을때
-                    recognizePlayer();
-                    break;
-                case monsterState.chase: //플레이어 추격
-                    ChasePlayer();
-                    break;
-                case monsterState.attack:
-                    attack();
-                    break;
-                case monsterState.die:
-                    monsterDead();
-                    break;
-                default:
-                    break;
+                switch (MonsterState)
+                {
+                    case monsterState.idle: // 패트롤 지점에 도착 했을때
+                        idle();
+                        break;
+                    case monsterState.move: // 패트롤 지점으로 이동       
+                        move();
+                        break;
+                    case monsterState.recognition: // 플레이어를 찾았을때
+                        recognizePlayer();
+                        break;
+                    case monsterState.chase: //플레이어 추격
+                        ChasePlayer();
+                        break;
+                    case monsterState.attack:
+                        attack();
+                        break;
+                    case monsterState.die:
+                        monsterDead();
+                        break;
+                    default:
+                        break;
+                }
             }
-        }   
+        }        
     }
 
     //기본 상태-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -155,7 +161,6 @@ public class CrabMonster : MonoBehaviour
         SearchPlayer();
         if ( agent.remainingDistance <= agent.stoppingDistance)
         {
-            agent.radius = 1.0f;
             MonsterState = monsterState.idle;
         }
     }
@@ -213,7 +218,7 @@ public class CrabMonster : MonoBehaviour
         useRecognizeAnimation = false;
         anim.SetBool("Moving", true);
         transform.LookAt(target.transform.position);
-        agent.speed = 0.0f;
+        agent.speed = fixedSpeed;
         int IntimidateType = Random.Range(1, 4);
         Debug.Log($"recognize:{IntimidateType}=>인식애니메이션 재생");
         anim.SetInteger("FindPlayer", IntimidateType);
@@ -223,7 +228,7 @@ public class CrabMonster : MonoBehaviour
         MonsterState = monsterState.chase;
         useRecognizeAnimation = true;
         anim.SetInteger("FindPlayer", 0);
-        agent.speed = 7.0f;
+        agent.speed = chaseSpeed;
     }
 
     //플레이어 추격-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -244,7 +249,7 @@ public class CrabMonster : MonoBehaviour
             {
                 agent.SetDestination(destination.position);
                 MonsterState = monsterState.idle;
-                agent.speed = 5.0f;
+                agent.speed = idleSpeed;
                 chaseTime = originChaseTime;
             }
         }
@@ -298,13 +303,55 @@ public class CrabMonster : MonoBehaviour
     //몬스터 사망------------------------------------------------------------------------
     private void monsterDead()
     {
-        if (GameManager.Inst.MonsterDead == false)
+        agent.speed = fixedSpeed;
+        alive = false;
+        anim.SetBool("Alive", false);
+        anim.SetBool("Moving", false);
+        anim.SetTrigger("Die");
+        GameManager.Inst.monsterRespawn();
+        Destroy(gameObject, 10.0f);
+    }  
+
+    /// <summary>
+    /// 공격을 받았을 때
+    /// </summary>
+    /// <param name="damage">받은 데미지</param>
+    public void takeDamage(float damage)
+    {
+        if(MonsterState == monsterState.idle || MonsterState == monsterState.move)
         {
-            anim.SetTrigger("Die");
-            MonsterState = monsterState.die;
-            GameManager.Inst.MonsterDead = true;
-            Destroy(gameObject, 5.0f);
+            HP -= damage;
+            target = GameManager.Inst.Player.gameObject;
+            MonsterState = monsterState.recognition;
         }
+
+        if(HP > 0 && MonsterState != monsterState.recognition)
+        {
+            HP -= damage;
+            agent.speed = fixedSpeed;
+            anim.SetBool("Attacked", true);
+            int randAttackedType = Random.Range(1, 4);
+            switch (randAttackedType)
+            {
+                case 1:
+                    anim.SetTrigger("AttackedMotion1");
+                    break;
+                case 2:
+                    anim.SetTrigger("AttackedMotion1");
+                    break;
+                case 3:
+                    anim.SetTrigger("AttackedMotion1");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    void recoveryToIdle()
+    {
+        agent.speed = chaseSpeed;
+        anim.SetBool("Attacked", false);
     }
 
     // 시야범위 및 탐지범위 표시(기즈모)-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -314,7 +361,7 @@ public class CrabMonster : MonoBehaviour
         Handles.DrawWireDisc(transform.position, transform.up, sightRange);
 
         Handles.color = Color.yellow;
-        Handles.DrawWireDisc(transform.position, transform.up, (sightRange*0.5f));
+        Handles.DrawWireDisc(transform.position, transform.up, (sightRange * 0.5f));
 
         //시야각도만큼 gizmo 그리기
         Handles.color = Color.red;
