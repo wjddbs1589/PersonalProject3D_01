@@ -20,6 +20,10 @@ public class Player : MonoBehaviour, HealthInfoManager
         {
             hp = Mathf.Clamp(value, 0,maxHP);
             HpChange?.Invoke(hp);
+            if(hp <= 0)
+            {
+                PlayerDead();
+            }
         } 
     }
     public Action<float> HpChange;
@@ -62,7 +66,6 @@ public class Player : MonoBehaviour, HealthInfoManager
 
     //플레이어 플래쉬라이트
     GameObject playerLight;
-    Light FlashLight;
     bool onLight = false;                   // 플래쉬를 사용 여부
 
     // 필드 아이템 상호작용
@@ -120,8 +123,6 @@ public class Player : MonoBehaviour, HealthInfoManager
         actions.Player.Disable();
     }
 
-    
-
     private void Awake()
     {
         actions = new();
@@ -129,7 +130,6 @@ public class Player : MonoBehaviour, HealthInfoManager
         selectItem = FindObjectOfType<ItemSelect>();
         cameraTarget = transform.GetChild(0).gameObject;
         playerLight = transform.GetChild(2).gameObject;
-        FlashLight = playerLight.transform.GetComponent<Light>();
         playerLight.SetActive(false);
 
         itemNameText = GameObject.Find("ItemName").gameObject.GetComponent<TextMeshProUGUI>();
@@ -397,5 +397,10 @@ public class Player : MonoBehaviour, HealthInfoManager
     public void takeDamage(float damage)
     {
         HP -= damage;
+    }
+    void PlayerDead()
+    {
+        //OnDisable();
+        //GameManager.Inst.SceneReset();
     }
 }

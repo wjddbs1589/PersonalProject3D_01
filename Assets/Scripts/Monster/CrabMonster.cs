@@ -72,7 +72,7 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
 
     float attackCoolTimeOrigin = 2.0f;
     float attackCoolTime = 0.0f;
-
+    float attackDamage = 30.0f;
     bool useRecognizeAnimation = true;
     bool alive = true;
 
@@ -296,22 +296,19 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
         else
         {
             MonsterState = monsterState.chase;
-        }
-
-        
+        }                
     }
-    //몬스터 사망------------------------------------------------------------------------
-    private void monsterDead()
+    private void OnTriggerEnter(Collider other)
     {
-        agent.speed = fixedSpeed;
-        alive = false;
-        anim.SetBool("Alive", false);
-        anim.SetBool("Moving", false);
-        anim.SetTrigger("Die");
-        GameManager.Inst.monsterRespawn();
-        Destroy(gameObject, 10.0f);
-    }  
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log(other.name);
+            other.transform.GetComponent<HealthInfoManager>().takeDamage(attackDamage);
+        }
+    }
 
+    //몬스터 사망------------------------------------------------------------------------
+   
     /// <summary>
     /// 공격을 받았을 때
     /// </summary>
@@ -347,11 +344,23 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
             }
         }
     }
-
     void recoveryToIdle()
     {
-        agent.speed = chaseSpeed;
-        anim.SetBool("Attacked", false);
+        if(MonsterState != monsterState.die)
+        {
+            agent.speed = chaseSpeed;
+            anim.SetBool("Attacked", false);
+        }
+    }
+    private void monsterDead()
+    {
+        agent.speed = fixedSpeed;
+        alive = false;
+        anim.SetBool("Alive", false);
+        anim.SetBool("Moving", false);
+        anim.SetTrigger("Die");
+        GameManager.Inst.monsterRespawn();
+        Destroy(gameObject, 10.0f);
     }
 
     // 시야범위 및 탐지범위 표시(기즈모)-----------------------------------------------------------------------------------------------------------------------------------------------

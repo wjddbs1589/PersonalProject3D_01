@@ -40,6 +40,7 @@ public class ItemSpawnerNormal : MonoBehaviour
                     itemManager.currentSpawnCount[ItemNumber[i] - 1]++;
                     GameObject obj = Instantiate(spawnPrefab[ItemNumber[i] - 1], itemSpawnPos[i].transform.position, transform.rotation);
                     obj.transform.position = itemSpawnPos[i].transform.position;
+                    obj.transform.parent = this.transform;
                 }
             }           
             randNumList.RemoveAt(randNum);

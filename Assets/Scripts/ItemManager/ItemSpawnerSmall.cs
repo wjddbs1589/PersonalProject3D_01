@@ -39,6 +39,7 @@ public class ItemSpawnerSmall : MonoBehaviour
                 {
                     GameObject obj = Instantiate(spawnPrefab[ItemNumber[i] - 1]);
                     obj.transform.position = itemSpawnPos[i].transform.position;
+                    obj.transform.parent = this.transform;
                     itemManager.currentSpawnCount[ItemNumber[i] - 1]++;
                 }
             }

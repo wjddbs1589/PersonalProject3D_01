@@ -6,6 +6,7 @@ using TMPro;
 using System.IO;
 using static ItemManager;
 using System;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -60,4 +61,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("몬스터 재 생성");
         monsterSpawner.spawnMonster();
     }
+
+    public void SceneReset()
+    {
+        Debug.Log("당신은 죽었습니다.");
+        SceneManager.LoadScene("MainScene");
+    }
+    
 }
