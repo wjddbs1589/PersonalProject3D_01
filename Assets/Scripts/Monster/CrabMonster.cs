@@ -75,6 +75,7 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     float attackDamage = 30.0f;
     bool useRecognizeAnimation = true;
     bool alive = true;
+    Collider capsuleCol;
 
     Transform destination;
     float fixedSpeed = 0.0f;
@@ -85,6 +86,7 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        capsuleCol = GetComponent<Collider>();
     }
     private void Start()
     {
@@ -219,7 +221,7 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
         anim.SetBool("Moving", true);
         transform.LookAt(target.transform.position);
         agent.speed = fixedSpeed;
-        int IntimidateType = Random.Range(1, 4);
+        int IntimidateType = Random.Range(1, 3);
         Debug.Log($"recognize:{IntimidateType}=>인식애니메이션 재생");
         anim.SetInteger("FindPlayer", IntimidateType);
     }
@@ -247,6 +249,11 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
             chaseTime -= Time.deltaTime;
             if (chaseTime <= 0)
             {
+                if(destination == null)
+                {
+                    int randNum = Random.Range(1, 23);
+                    destination = GameManager.Inst.MonsterSpawner.spawnPos[randNum];
+                }
                 agent.SetDestination(destination.position);
                 MonsterState = monsterState.idle;
                 agent.speed = idleSpeed;
@@ -354,8 +361,10 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     }
     private void monsterDead()
     {
+        capsuleCol.enabled = false;
         agent.speed = fixedSpeed;
         alive = false;
+
         anim.SetBool("Alive", false);
         anim.SetBool("Moving", false);
         anim.SetTrigger("Die");

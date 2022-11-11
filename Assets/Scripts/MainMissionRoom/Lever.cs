@@ -14,6 +14,7 @@ public class Lever : MonoBehaviour,UseableObject
     public void objectIneractive()
     {
         leverUsed = true;        
+        //레버 내려오는 거 만들기
         shipRoomDoor.OpenDoor();
     }
 
