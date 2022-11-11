@@ -67,5 +67,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("당신은 죽었습니다.");
         SceneManager.LoadScene("MainScene");
     }
+
+    public void Escape()
+    {
+        Application.Quit();
+    }
     
 }
