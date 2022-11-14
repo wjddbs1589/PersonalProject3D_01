@@ -400,6 +400,6 @@ public class Player : MonoBehaviour, HealthInfoManager
     }
     void PlayerDead()
     {
-        GameManager.Inst.SceneReset();
+        SceneManager.LoadScene("SelectScene");
     }
 }
