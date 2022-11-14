@@ -8,16 +8,14 @@ public class PlayerInventory : MonoBehaviour
 {
     [Header("인벤토리에 저장된 아이템 목록")]
     public GameObject[] inventory;
-
-    public int savePos = 0;
-    public int usePos = 0;
+    public int savePos = 0;  //아이템이 저장될 인벤토리 위치
 
     [Header("빈 인벤토리 이미지")]
     public Sprite blankInvetoryImage;
 
     [SerializeField]Image[] itemSprite; //인벤토리에서 아이템의 이미지를 저장할 배열
 
-    public TextMeshProUGUI[] itemCountText;
+    public TextMeshProUGUI[] itemCountText; // 현재 선택된 아이템을 몇개 가지고 있는지 표시할 text
     private void Awake()
     {
         inventory = new GameObject[6];
@@ -62,16 +60,16 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     /// <param name="item">앞으로 한칸 당길 아이템</param>
     /// <param name="itemPos">당겨서 넣을</param>
-    public void changeItemImage(int itemPos)
+    public void changeItemPosition(int itemPos)
     {
         if (inventory[itemPos + 1] != null)
         {
             inventory[itemPos] = inventory[itemPos + 1];                                                          //뒤의 아이템을 당겨옴
             itemSprite[itemPos].sprite = inventory[itemPos + 1].GetComponent<UseableObject>().returnItemSprite(); //이미지 당겨옴
-            itemCountText[itemPos].text = itemCountText[itemPos + 1].text;                                                  //아이템 개수 당겨옴
+            itemCountText[itemPos].text = itemCountText[itemPos + 1].text;                                        //아이템 개수 당겨옴
             itemSprite[itemPos + 1].sprite = blankInvetoryImage;                                                  //당겨진칸 이미지 비우기
             inventory[itemPos + 1] = null;                                                                        //당겨진칸 아이템 비우기
-            itemCountText[itemPos + 1].text = "";                                                                    //당겨진칸 아이템수 비우기
+            itemCountText[itemPos + 1].text = "";                                                                 //당겨진칸 아이템수 비우기
         }
         else
         {

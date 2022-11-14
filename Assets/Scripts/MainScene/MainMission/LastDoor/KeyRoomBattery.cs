@@ -8,7 +8,7 @@ public class KeyRoomBattery : MonoBehaviour
 {
     Battery[] batterys;
     Material[] materials;
-    //-------------------------------------------------------
+    //배터리 개수-------------------------------------------------------
     int batteryCount = 0;
     public int BatteryCount
     {

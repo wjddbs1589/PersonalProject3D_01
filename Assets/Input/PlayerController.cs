@@ -170,6 +170,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2224dce-2920-4ed9-9d8b-58d20d8b65f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -392,6 +401,17 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f791ae7e-d663-44b5-a874-8c6fc56c5f32"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -422,6 +442,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Player_itemselect4 = m_Player.FindAction("itemselect4", throwIfNotFound: true);
         m_Player_itemselect5 = m_Player.FindAction("itemselect5", throwIfNotFound: true);
         m_Player_itemselect6 = m_Player.FindAction("itemselect6", throwIfNotFound: true);
+        m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -497,6 +518,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_itemselect4;
     private readonly InputAction m_Player_itemselect5;
     private readonly InputAction m_Player_itemselect6;
+    private readonly InputAction m_Player_Esc;
     public struct PlayerActions
     {
         private @PlayerController m_Wrapper;
@@ -517,6 +539,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @itemselect4 => m_Wrapper.m_Player_itemselect4;
         public InputAction @itemselect5 => m_Wrapper.m_Player_itemselect5;
         public InputAction @itemselect6 => m_Wrapper.m_Player_itemselect6;
+        public InputAction @Esc => m_Wrapper.m_Player_Esc;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -574,6 +597,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @itemselect6.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect6;
                 @itemselect6.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect6;
                 @itemselect6.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemselect6;
+                @Esc.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
+                @Esc.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
+                @Esc.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -626,6 +652,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @itemselect6.started += instance.OnItemselect6;
                 @itemselect6.performed += instance.OnItemselect6;
                 @itemselect6.canceled += instance.OnItemselect6;
+                @Esc.started += instance.OnEsc;
+                @Esc.performed += instance.OnEsc;
+                @Esc.canceled += instance.OnEsc;
             }
         }
     }
@@ -657,5 +686,6 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnItemselect4(InputAction.CallbackContext context);
         void OnItemselect5(InputAction.CallbackContext context);
         void OnItemselect6(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
     }
 }

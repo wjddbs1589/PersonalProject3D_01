@@ -16,8 +16,8 @@ public class BulletCount : MonoBehaviour
     }
     private void Start()
     {
-        handgun.changeBullet += bulletCount;
-        handgun.changeHaveBullet += haveBullet;
+        handgun.changeBullet += bulletCount;    //장전된 총알 개수가  변했을때 실행됨
+        handgun.changeHaveBullet += haveBullet; //총알의 총 개수가 변했을때 실행됨
     }  
     private void bulletCount(int obj)
     {

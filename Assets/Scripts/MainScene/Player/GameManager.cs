@@ -50,21 +50,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //몬스터 리스폰 함수
     public void monsterRespawn()
     {
-        StartCoroutine(respawnTimer());
+        StartCoroutine(respawnTimer()); //몬스터 리스폰 코루틴 실행
     }
 
     IEnumerator respawnTimer()
     {
-        yield return new WaitForSeconds(30.0f);
-        Debug.Log("몬스터 재 생성");
-        monsterSpawner.spawnMonster();
+        yield return new WaitForSeconds(30.0f); //30초 이후에
+        monsterSpawner.spawnMonster(); //몬스터 재생성함수 실행
     }
 
-    public void SceneReset()
+    /// <summary>
+    /// 플레이어가 죽었을때 실행될 함수
+    /// </summary>
+    public void PlayerDead()
     {
-        Debug.Log("당신은 죽었습니다.");
-        SceneManager.LoadScene("SelectScene");
+        SceneManager.LoadScene("SelectScene"); // 시작 씬으로 이동
     }
 }

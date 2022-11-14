@@ -13,15 +13,16 @@ public class Door : MonoBehaviour, UseableObject
     }
     public void objectIneractive()
     {
+        //도어가 열려있는 상태이면
         if (doorOpen)
         {
-            anim.SetTrigger("Close");
-            doorOpen = false;
+            anim.SetTrigger("Close"); //애니메이션 변경
+            doorOpen = false;         //상태 변경
         }
-        else
+        else //닫혀있으면
         {
-            anim.SetTrigger("Open");
-            doorOpen = true;
+            anim.SetTrigger("Open"); //애니메이션 변경
+            doorOpen = true;         //상태 변경
         }
     }
     public string objectName()
@@ -31,8 +32,7 @@ public class Door : MonoBehaviour, UseableObject
 
     public bool canInteractive()
     {
-        bool result = true;
-        return result;
+        return true;
     }
 
     public void UseItem()

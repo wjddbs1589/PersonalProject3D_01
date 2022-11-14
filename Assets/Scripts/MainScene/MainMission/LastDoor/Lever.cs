@@ -5,16 +5,18 @@ using UnityEngine;
 public class Lever : MonoBehaviour,UseableObject
 {
     ShipRoomDoor shipRoomDoor;
+    Animator anim;
     public GameObject lever;
     bool leverUsed = false;
     private void Awake()
     {
         shipRoomDoor = FindObjectOfType<ShipRoomDoor>();
+        anim = GetComponent<Animator>();
     }
     public void objectIneractive()
     {
-        leverUsed = true;        
-        //레버 내려오는 거 만들기
+        leverUsed = true;
+        anim.SetBool("Use",true);
         shipRoomDoor.OpenDoor();
     }
 

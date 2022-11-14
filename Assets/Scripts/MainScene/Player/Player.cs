@@ -290,11 +290,15 @@ public class Player : MonoBehaviour, HealthInfoManager
         cameraTarget.transform.position = new Vector3(transform.position.x, cameraTarget.transform.position.y + yPos, transform.position.z);
         playerLight.transform.position = new Vector3(transform.position.x, playerLight.transform.position.y + yPos, transform.position.z);
     }
-
+    /// <summary>
+    /// r키를 누르면 재장전 한다.
+    /// </summary>
+    /// <param name="_"></param>
     private void onReload(InputAction.CallbackContext _)
     {
         handgun.ReloadHandgun();        
     }
+
     //아이템 선택 1~6
     int selectedItemNumber = 0;
     public int SelectedItemNumber
@@ -394,10 +398,14 @@ public class Player : MonoBehaviour, HealthInfoManager
         return Mathf.Clamp(angle, Min, Max);
     }
 
+    // damage만큼 hp를 감소시킴
     public void takeDamage(float damage)
     {
         HP -= damage;
     }
+    /// <summary>
+    /// 플레이어가 죽으면 처음 선택화면으로 돌아감
+    /// </summary>
     void PlayerDead()
     {
         SceneManager.LoadScene("SelectScene");

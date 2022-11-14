@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//ItemSpawnerNormal과 같은 기능
 public class ItemSpawnerSmall : MonoBehaviour
 {
     ItemSpawnPos[] itemSpawnPos;
-    public GameObject[] spawnPrefab;
+    GameObject[] spawnPrefab;
 
     ItemManager itemManager;
     

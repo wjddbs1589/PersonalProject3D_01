@@ -25,8 +25,8 @@ public class SprintBar : MonoBehaviour
     }
     public void sprint()
     {        
-        sliderRate = player.CurrentStamina / player.MaxStamina;
-        slider.value = sliderRate;
-        fill.color = Color.Lerp(Color.red,Color.green, sliderRate);
+        sliderRate = player.CurrentStamina / player.MaxStamina; //현재 스태미너의 남아있는 비율
+        slider.value = sliderRate; //슬라이더를 비율만큼 조정함
+        fill.color = Color.Lerp(Color.red,Color.green, sliderRate); //비율이 낮을수록 적색 높을수록 녹색으로 설정
     }
 }

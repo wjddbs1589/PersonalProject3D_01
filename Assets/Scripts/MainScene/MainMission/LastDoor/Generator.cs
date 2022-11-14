@@ -20,17 +20,17 @@ public class Generator : MonoBehaviour, UseableObject
     }
     public void objectIneractive()
     {
-        if (GameManager.Inst.ItemManager.currentItemCount[(int)Itemlist.RepairKit] > 0)
+        if (GameManager.Inst.ItemManager.currentItemCount[(int)Itemlist.RepairKit] > 0) // 현재 수리키트 아이템을 0개보다 많이 가지고 있을때
         {
-            if (!Fixed)
+            if (!Fixed) //만약 수리된 상태가 아니면
             {
-                Fixed = true;
-                GeneratorLight.color = Color.green;
-                GameManager.Inst.KeyRoomBattery.BatteryCount += 1;
-                ItemManager.currentItemCount[(int)Itemlist.RepairKit]--;
-                if (ItemManager.currentItemCount[(int)Itemlist.RepairKit] == 0)
+                Fixed = true; //상태 변경
+                GeneratorLight.color = Color.green;                             //오브젝트의 빛 녹색으로 변경
+                GameManager.Inst.KeyRoomBattery.BatteryCount += 1;              // 수리된 배터리 개수 증가
+                ItemManager.currentItemCount[(int)Itemlist.RepairKit]--;        // 리페어 키트 개수 감소
+                if (ItemManager.currentItemCount[(int)Itemlist.RepairKit] == 0) //남은 리페어 키트가 없으면
                 {
-                    ItemManager.ItemDelete(Itemlist.RepairKit);
+                    ItemManager.ItemDelete(Itemlist.RepairKit);                 //인벤토리에서 삭제
                 }
             }
         }       

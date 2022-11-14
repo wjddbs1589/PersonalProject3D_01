@@ -7,11 +7,12 @@ public class RepairKit : MonoBehaviour, UseableObject
 {
     public Sprite itemImagePrefab;
 
+    //아이템 상호작용시 발생하는 함수
     public void objectIneractive()
     {
-        if (GameManager.Inst.ItemManager.saveItem(Itemlist.RepairKit))
+        if (GameManager.Inst.ItemManager.saveItem(Itemlist.RepairKit)) //인벤토리에 저장후
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //상호작용한 게임오브젝트 삭제
         }
     }
     
