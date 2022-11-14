@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7626511305805832106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7626511305805832100}
+  - component: {fileID: 7626511305805832101}
+  m_Layer: 0
+  m_Name: ItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7626511305805832100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626511305805832106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -83.995605, y: 115.582954, z: -107.890205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7626511305805832101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626511305805832106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c7d4d3c8e4c3b4695dabaa4e276814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavedItem:
+  - {fileID: 534519619851287299, guid: b94d5b5b2229d214391b5436e405040f, type: 3}
+  - {fileID: 3148759288474657420, guid: 299fffd38ed70224bb700bba3ec30328, type: 3}
+  - {fileID: 8367022405573174999, guid: dc0c7da3417705e47a152d3e6be1c0a3, type: 3}
+  - {fileID: 3835181838194096672, guid: 6a590e26226a36746b04f7015693df61, type: 3}
+  - {fileID: 1020059764475540, guid: f7b56492a603da947abb77f537daa126, type: 3}
+  - {fileID: 8097389552851487727, guid: fc7db77bc1f158b4f9fa4700a764dc01, type: 3}
+  maxItemCount: 010000001400000005000000040000000000000014000000
+  currentItemCount: 010000000000000000000000000000000000000000000000
+  maxSpawnCount: 00000000140000000a0000000a0000001400000014000000
+  currentSpawnCount: 000000000000000000000000000000000000000000000000

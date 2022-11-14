@@ -27,10 +27,10 @@ public class ItemManager : MonoBehaviour
     [Header("소지중인 아이템 종류별 갯수")]
     public int[] currentItemCount = {1,0,0,0,0,0};          //현재 소지 수
 
-    public int[] maxSpawnCount = {0,20,15,15,20,20};          //아이템 스폰 최대수
+    public int[] maxSpawnCount = {0,20,10,10,20,20};        //아이템 스폰 최대수
     public int[] currentSpawnCount = { 0, 0, 0, 0, 0, 0 };  //현재 스폰된 수
 
-    private void Awake()
+    private void Start()
     {
         playerInventory = GameManager.Inst.PlayerInventory;
         playerInventory.inventory[playerInventory.savePos] = SavedItem[(int)Itemlist.Handgun]; // 인벤토리에 권총 아이템 넣음

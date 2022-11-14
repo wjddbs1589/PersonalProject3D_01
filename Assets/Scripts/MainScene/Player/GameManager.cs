@@ -80,9 +80,9 @@ public class GameManager : MonoBehaviour
     public void instantiate()
     {
         player = FindObjectOfType<Player>();
+        playerInventory = FindObjectOfType<PlayerInventory>();
         keyRoomBattery = FindObjectOfType<KeyRoomBattery>();
         itemManager = FindObjectOfType<ItemManager>();
-        playerInventory = FindObjectOfType<PlayerInventory>();
         monsterSpawner = FindObjectOfType<MonsterSpawner>();
         stopMenu = FindObjectOfType<StopMenu>();
     }
