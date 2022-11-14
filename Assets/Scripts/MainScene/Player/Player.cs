@@ -78,6 +78,8 @@ public class Player : MonoBehaviour, HealthInfoManager
     //우클릭으로 사용할 아이템
     ItemSelect selectItem;
 
+    //esc로 메뉴 사용
+    bool menuState = false;
     private void OnEnable()
     {
         actions.Player.Enable();
@@ -99,9 +101,15 @@ public class Player : MonoBehaviour, HealthInfoManager
         actions.Player.itemselect4.performed += select4Item;
         actions.Player.itemselect5.performed += select5Item;
         actions.Player.itemselect6.performed += select6Item;
+
+        actions.Menu.Enable();
+        actions.Menu.Esc.performed += useESC;
     }
     private void OnDisable()
     {
+        actions.Menu.Esc.performed -= useESC;
+        actions.Menu.Disable();
+
         actions.Player.itemselect6.performed -= select6Item;
         actions.Player.itemselect5.performed -= select5Item;
         actions.Player.itemselect4.performed -= select4Item;
@@ -135,12 +143,13 @@ public class Player : MonoBehaviour, HealthInfoManager
         itemNameText = GameObject.Find("ItemName").gameObject.GetComponent<TextMeshProUGUI>();
 
         handgun = cameraTarget.transform.Find("Handgun").gameObject.transform.GetComponent<Handgun>();
+
+        Cursor.lockState = CursorLockMode.Locked;   // 게임 창 밖으로 마우스가 안나감, 마우스를 게임 중앙 좌표에 고정시키고 숨김
     }
-   
+
     private void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;   // 게임 창 밖으로 마우스가 안나감, 마우스를 게임 중앙 좌표에 고정시키고 숨김
-
+        
         // 키보드 이동이 있을때
         if (moveDir.sqrMagnitude > 0.0f)
         {
@@ -340,6 +349,40 @@ public class Player : MonoBehaviour, HealthInfoManager
     {
         selectItem.preItemNum = SelectedItemNumber;
         SelectedItemNumber = 5;
+    }
+
+
+    /// <summary>
+    /// esc를 눌렀을때 메뉴 상호작용
+    /// </summary>
+    /// <param name="_"></param>
+    private void useESC(InputAction.CallbackContext _)
+    {
+        if (!menuState) //메뉴 사용중이 아니면
+        {
+            Time.timeScale = 0.0f;      //게임속도 0으로 설정
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;      //커서 숨김 비활성화
+            actions.Player.Disable();   //인풋액션 비활성화
+            GameManager.Inst.openMenu();//메뉴 활성화
+            menuState = true;           //메뉴 활성상태 활성으로 변경
+        }
+        else //메뉴 사용중이면 메뉴 닫는 함수 활성
+        {
+            offMenu();
+        }        
+    }
+    /// <summary>
+    /// 메뉴 닫기
+    /// </summary>
+    public void offMenu()
+    {
+        Time.timeScale = 1.0f;                    //게임속도 원상복구
+        GameManager.Inst.closeMenu();             //메뉴창 비 활성화
+        actions.Player.Enable();                  //플레이어 인풋액션 활성화
+        Cursor.lockState = CursorLockMode.Locked; //커서 숨김 
+        menuState = false;                        //메뉴 활성상태 비활성으로 변경
     }
     //우클릭으로 선택한 아이템 사용
     private void UseItem(InputAction.CallbackContext _)

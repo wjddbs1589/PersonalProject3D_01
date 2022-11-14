@@ -10,35 +10,34 @@ using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance = null;
+    [SerializeField] static GameManager instance = null;
     public static GameManager Inst => instance;
     //---------------------------------------------
-    Player player;
+    [SerializeField] Player player;
     public Player Player => player;
     //---------------------------------------------    
-    ItemManager itemManager;
+    [SerializeField] ItemManager itemManager;
     public ItemManager ItemManager => itemManager;
     //---------------------------------------------
-    PlayerInventory playerInventory;
+    [SerializeField] PlayerInventory playerInventory;
     public PlayerInventory PlayerInventory => playerInventory;
     //---------------------------------------------
-    KeyRoomBattery keyRoomBattery;
+    [SerializeField] KeyRoomBattery keyRoomBattery;
     public KeyRoomBattery KeyRoomBattery => keyRoomBattery;
     //---------------------------------------------
-    MonsterSpawner monsterSpawner;
+    [SerializeField] MonsterSpawner monsterSpawner;
     public MonsterSpawner MonsterSpawner => monsterSpawner;
 
+    //---------------------------------------------
+    [SerializeField] StopMenu stopMenu;
+    public StopMenu StopMenu => stopMenu;
     //---------------------------------------------
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            player = FindObjectOfType<Player>();
-            keyRoomBattery = FindObjectOfType<KeyRoomBattery>();
-            itemManager = FindObjectOfType<ItemManager>();
-            playerInventory = FindObjectOfType<PlayerInventory>();
-            monsterSpawner = FindObjectOfType<MonsterSpawner>();
+            instantiate();
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -62,11 +61,29 @@ public class GameManager : MonoBehaviour
         monsterSpawner.spawnMonster(); //몬스터 재생성함수 실행
     }
 
+    public void openMenu()
+    {
+        stopMenu.transform.gameObject.SetActive(true);
+    }
+    public void closeMenu()
+    {
+        stopMenu.transform.gameObject.SetActive(false);
+    }
+
     /// <summary>
     /// 플레이어가 죽었을때 실행될 함수
     /// </summary>
     public void PlayerDead()
     {
         SceneManager.LoadScene("SelectScene"); // 시작 씬으로 이동
+    }
+    public void instantiate()
+    {
+        player = FindObjectOfType<Player>();
+        keyRoomBattery = FindObjectOfType<KeyRoomBattery>();
+        itemManager = FindObjectOfType<ItemManager>();
+        playerInventory = FindObjectOfType<PlayerInventory>();
+        monsterSpawner = FindObjectOfType<MonsterSpawner>();
+        stopMenu = FindObjectOfType<StopMenu>();
     }
 }

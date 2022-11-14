@@ -22,12 +22,12 @@ public class ItemManager : MonoBehaviour
     // 권총/형광봉/기름통/수리키트/총알/포션 - 순서
 
     [Header("한칸에 들어가는 아이템 갯수")]
-    [SerializeField]int[] maxItemCount = {1,20,5,4,0,20};             //인벤토리 한 칸에 소지가능한 아이템 수
+    public int[] maxItemCount = {1,20,5,4,0,20};             //인벤토리 한 칸에 소지가능한 아이템 수
 
     [Header("소지중인 아이템 종류별 갯수")]
     public int[] currentItemCount = {1,0,0,0,0,0};          //현재 소지 수
 
-    public int[] maxSpawnCount = {0,20,5,4,20,20};          //아이템 스폰 최대수
+    public int[] maxSpawnCount = {0,20,15,15,20,20};          //아이템 스폰 최대수
     public int[] currentSpawnCount = { 0, 0, 0, 0, 0, 0 };  //현재 스폰된 수
 
     private void Awake()
