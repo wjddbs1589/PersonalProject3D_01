@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] HelpBoard helpBoard;
     public HelpBoard HelpBoard => helpBoard;
 
-    public bool tutorialCheck = false;
+    public bool usingHelp = false;
 
     private void Awake()
     {

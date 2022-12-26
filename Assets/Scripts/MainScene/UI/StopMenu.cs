@@ -32,5 +32,6 @@ public class StopMenu : MonoBehaviour
     {        
         GameManager.Inst.HelpBoard.gameObject.SetActive(true);
         gameObject.SetActive(false);
+        GameManager.Inst.usingHelp = true;
     }
 }

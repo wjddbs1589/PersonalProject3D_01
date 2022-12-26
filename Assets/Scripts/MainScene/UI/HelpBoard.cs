@@ -9,7 +9,9 @@ public class HelpBoard : MonoBehaviour
 {
     public TextMeshProUGUI pageNumber;  
 
-    int currentPage = 1; // 현재 페이지
+    int currentPage = 0; // 현재 페이지
+    int maxPage = 7;
+    public Action<int,int> onPageChange;
 
     private void Start()
     {
@@ -21,11 +23,11 @@ public class HelpBoard : MonoBehaviour
     /// </summary>
     public void pageDown()
     {
-        if(currentPage < 6 && currentPage > 1)
+        if(currentPage <= 6 && currentPage > 0)
         {
             currentPage--;
-            pageNumber.text = $"{currentPage}/5";
-            Debug.Log("이전 페이지로 이동");
+            onPageChange?.Invoke(currentPage, currentPage+1);
+            pageNumber.text = $"{currentPage+1}/{maxPage}";
         }
     }
     /// <summary>
@@ -33,11 +35,11 @@ public class HelpBoard : MonoBehaviour
     /// </summary>
     public void pageUp()
     {
-        if (currentPage > 0 && currentPage < 5)
+        if (currentPage < 6 && currentPage >= 0)
         {
             currentPage++;
-            pageNumber.text = $"{currentPage}/5";
-            Debug.Log("다음 페이지로 이동");
+            onPageChange?.Invoke(currentPage, currentPage-1);
+            pageNumber.text = $"{currentPage+1}/{maxPage}";
         }
     }
 
@@ -46,8 +48,8 @@ public class HelpBoard : MonoBehaviour
     /// </summary>
     public void closeHelp()
     {
+        GameManager.Inst.usingHelp = false;
         gameObject.SetActive(false);
-        Debug.Log("창을 닫습니다.");
         GameManager.Inst.StopMenu.gameObject.SetActive(true);
     }
 }

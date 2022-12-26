@@ -149,15 +149,6 @@ public class Player : MonoBehaviour, HealthInfoManager
 
     private void Update()
     {
-        for(int i = 1; i <= 9; i++)
-        {
-            for (int k = 1; k <= 9; k++)
-            {
-                //
-            }
-        }
-
-
         // 키보드 이동이 있을때
         if (moveDir.sqrMagnitude > 0.0f)
         {
@@ -366,7 +357,7 @@ public class Player : MonoBehaviour, HealthInfoManager
     /// <param name="_"></param>
     private void useESC(InputAction.CallbackContext _)
     {
-        if (!menuState) //메뉴 사용중이 아니면
+        if (!menuState && GameManager.Inst.usingHelp == false) //메뉴 사용중이 아니고 도움말 사용중이 아닐때
         {
             Time.timeScale = 0.0f;      //게임속도 0으로 설정
             Cursor.lockState = CursorLockMode.None;
@@ -378,7 +369,10 @@ public class Player : MonoBehaviour, HealthInfoManager
         }
         else //메뉴 사용중이면 메뉴 닫는 함수 활성
         {
-            offMenu();
+            if(GameManager.Inst.usingHelp == false)
+            {
+                offMenu();
+            }
         }        
     }
     /// <summary>
