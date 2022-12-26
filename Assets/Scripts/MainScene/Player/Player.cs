@@ -149,7 +149,15 @@ public class Player : MonoBehaviour, HealthInfoManager
 
     private void Update()
     {
-        
+        for(int i = 1; i <= 9; i++)
+        {
+            for (int k = 1; k <= 9; k++)
+            {
+                //
+            }
+        }
+
+
         // 키보드 이동이 있을때
         if (moveDir.sqrMagnitude > 0.0f)
         {

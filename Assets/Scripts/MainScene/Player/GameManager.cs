@@ -12,26 +12,31 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] static GameManager instance = null;
     public static GameManager Inst => instance;
-    //---------------------------------------------
+    //플레이어---------------------------------------------
     [SerializeField] Player player;
     public Player Player => player;
-    //---------------------------------------------    
+    //아이템 매니저---------------------------------------------    
     [SerializeField] ItemManager itemManager;
     public ItemManager ItemManager => itemManager;
-    //---------------------------------------------
+    //인벤토리---------------------------------------------
     [SerializeField] PlayerInventory playerInventory;
     public PlayerInventory PlayerInventory => playerInventory;
-    //---------------------------------------------
+    //배터리---------------------------------------------
     [SerializeField] KeyRoomBattery keyRoomBattery;
     public KeyRoomBattery KeyRoomBattery => keyRoomBattery;
-    //---------------------------------------------
+    //몬스터 스포너---------------------------------------------
     [SerializeField] MonsterSpawner monsterSpawner;
     public MonsterSpawner MonsterSpawner => monsterSpawner;
 
-    //---------------------------------------------
+    //일시정지 메뉴 ui---------------------------------------------
     [SerializeField] StopMenu stopMenu;
     public StopMenu StopMenu => stopMenu;
-    //---------------------------------------------
+    //도움말 ui---------------------------------------------
+    [SerializeField] HelpBoard helpBoard;
+    public HelpBoard HelpBoard => helpBoard;
+
+    public bool tutorialCheck = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -48,7 +53,10 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    private void Start()
+    {
+        
+    }
     //몬스터 리스폰 함수
     public void monsterRespawn()
     {
@@ -85,5 +93,6 @@ public class GameManager : MonoBehaviour
         itemManager = FindObjectOfType<ItemManager>();
         monsterSpawner = FindObjectOfType<MonsterSpawner>();
         stopMenu = FindObjectOfType<StopMenu>();
+        helpBoard = FindObjectOfType<HelpBoard>();
     }
 }

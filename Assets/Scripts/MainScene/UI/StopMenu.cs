@@ -24,4 +24,13 @@ public class StopMenu : MonoBehaviour
         GameManager.Inst.Player.offMenu();
         SceneManager.LoadScene("SelectScene");
     }
+
+    /// <summary>
+    /// 도움말 보기
+    /// </summary>
+    public void openHelpBoard()
+    {        
+        GameManager.Inst.HelpBoard.gameObject.SetActive(true);
+        gameObject.SetActive(false);
+    }
 }
