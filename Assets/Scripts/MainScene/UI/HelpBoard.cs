@@ -12,7 +12,6 @@ public class HelpBoard : MonoBehaviour
     int currentPage = 0; // 현재 페이지
     int maxPage = 7;
     public Action<int,int> onPageChange;
-
     private void Start()
     {
         GameManager.Inst.HelpBoard.gameObject.SetActive(false); // 게임 시작시 숨김
@@ -48,8 +47,9 @@ public class HelpBoard : MonoBehaviour
     /// </summary>
     public void closeHelp()
     {
+        currentPage = 0; //닫을때 페이지 초기화
         GameManager.Inst.usingHelp = false;
-        gameObject.SetActive(false);
         GameManager.Inst.StopMenu.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

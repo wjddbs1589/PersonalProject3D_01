@@ -7,7 +7,6 @@ public class Generator : MonoBehaviour, UseableObject
     Light GeneratorLight;
     bool Fixed = false;
     ItemManager ItemManager;
-    PlayerInventory inventory;
     private void Awake()
     {
         GeneratorLight = transform.GetComponentInChildren<Light>();
@@ -16,7 +15,6 @@ public class Generator : MonoBehaviour, UseableObject
     private void Start()
     {
         ItemManager = GameManager.Inst.ItemManager;
-        inventory = GameManager.Inst.PlayerInventory;
     }
     public void objectIneractive()
     {
@@ -26,8 +24,9 @@ public class Generator : MonoBehaviour, UseableObject
             {
                 Fixed = true; //상태 변경
                 GeneratorLight.color = Color.green;                             //오브젝트의 빛 녹색으로 변경
-                GameManager.Inst.KeyRoomBattery.BatteryCount += 1;              // 수리된 배터리 개수 증가
-                ItemManager.currentItemCount[(int)Itemlist.RepairKit]--;        // 리페어 키트 개수 감소
+                GameManager.Inst.KeyRoomBattery.BatteryCount += 1;              //수리된 배터리 개수 증가
+                ItemManager.currentItemCount[(int)Itemlist.RepairKit]--;        //리페어 키트 개수 감소
+                GameManager.Inst.MissionObject.fixGenerate();                   //미션 오브젝트 갱신
                 if (ItemManager.currentItemCount[(int)Itemlist.RepairKit] == 0) //남은 리페어 키트가 없으면
                 {
                     ItemManager.ItemDelete(Itemlist.RepairKit);                 //인벤토리에서 삭제

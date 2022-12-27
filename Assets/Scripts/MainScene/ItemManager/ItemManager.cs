@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class ItemManager : MonoBehaviour
     public int[] maxItemCount = {1,20,5,4,0,20};             //인벤토리 한 칸에 소지가능한 아이템 수
 
     [Header("소지중인 아이템 종류별 갯수")]
-    public int[] currentItemCount = {1,0,0,0,0,0};          //현재 소지 수
+    public int[] currentItemCount = {1,0,0,0,0,0};          //현재 소지 수    
 
     public int[] maxSpawnCount = {0,20,10,10,20,20};        //아이템 스폰 최대수
     public int[] currentSpawnCount = { 0, 0, 0, 0, 0, 0 };  //현재 스폰된 수

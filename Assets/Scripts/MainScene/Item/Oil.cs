@@ -17,6 +17,7 @@ public class Oil : MonoBehaviour, UseableObject
         {
             if (GameManager.Inst.ItemManager.saveItem(Itemlist.Oil)) //인벤토리에 추가하고
             {
+                GameManager.Inst.MissionObject.gainOil();
                 Destroy(gameObject); //게임오브젝트 삭제
             }
         }

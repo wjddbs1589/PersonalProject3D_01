@@ -16,6 +16,7 @@ public class Lever : MonoBehaviour,UseableObject
     public void objectIneractive()
     {
         leverUsed = true;
+        GameManager.Inst.MissionObject.useLever();
         anim.SetBool("Use",true);
         shipRoomDoor.OpenDoor();
     }

@@ -11,7 +11,7 @@ using Unity.VisualScripting;
 
 public class Player : MonoBehaviour, HealthInfoManager
 {
-    float hp = 80.0f;
+    float hp = 100.0f;
     float maxHP = 100.0f;
     public float HP 
     {
@@ -367,13 +367,13 @@ public class Player : MonoBehaviour, HealthInfoManager
             GameManager.Inst.openMenu();//메뉴 활성화
             menuState = true;           //메뉴 활성상태 활성으로 변경
         }
-        else //메뉴 사용중이면 메뉴 닫는 함수 활성
-        {
-            if(GameManager.Inst.usingHelp == false)
-            {
-                offMenu();
-            }
-        }        
+        //else //메뉴 사용중이면 메뉴 닫는 함수 활성
+        //{
+        //    if(GameManager.Inst.usingHelp == false)
+        //    {
+        //        offMenu();
+        //    }
+        //}        
     }
     /// <summary>
     /// 메뉴 닫기
@@ -383,7 +383,8 @@ public class Player : MonoBehaviour, HealthInfoManager
         Time.timeScale = 1.0f;                    //게임속도 원상복구
         GameManager.Inst.closeMenu();             //메뉴창 비 활성화
         actions.Player.Enable();                  //플레이어 인풋액션 활성화
-        Cursor.lockState = CursorLockMode.Locked; //커서 숨김 
+        Cursor.visible = false;                   //커서 숨김
+        Cursor.lockState = CursorLockMode.Locked; //커서 중간에 고정 
         menuState = false;                        //메뉴 활성상태 비활성으로 변경
     }
     //우클릭으로 선택한 아이템 사용

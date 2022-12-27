@@ -21,6 +21,7 @@ public class Valve : MonoBehaviour, UseableObject
         if (!used)
         {
             used = true;
+            GameManager.Inst.MissionObject.lockGasvale();
             StartCoroutine(valveRotate());
             trap.ValveCount += 1;
         }        

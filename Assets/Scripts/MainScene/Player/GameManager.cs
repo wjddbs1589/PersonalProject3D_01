@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     //도움말 ui---------------------------------------------
     [SerializeField] HelpBoard helpBoard;
     public HelpBoard HelpBoard => helpBoard;
+    //미션오브젝트 관리용
+    [SerializeField] MissionObject missionObject;
+    public MissionObject MissionObject => missionObject;
 
     public bool usingHelp = false;
 
@@ -94,5 +97,6 @@ public class GameManager : MonoBehaviour
         monsterSpawner = FindObjectOfType<MonsterSpawner>();
         stopMenu = FindObjectOfType<StopMenu>();
         helpBoard = FindObjectOfType<HelpBoard>();
+        missionObject = FindObjectOfType<MissionObject>();
     }
 }
