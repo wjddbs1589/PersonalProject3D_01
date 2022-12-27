@@ -48,7 +48,7 @@ public class MissionObject : MonoBehaviour
         fixedGenerateCount++;
         if (fixedGenerateCount == 5)
         {
-            missions[1].text = $"<s>발전기 수리하기({fixedGenerateCount}/4)</s>";
+            missions[1].text = $"<s>{missions[1].text}</s>";
         }
         else
         {
@@ -63,7 +63,7 @@ public class MissionObject : MonoBehaviour
         lockedGasvalveCount++;
         if (lockedGasvalveCount == 5)
         {
-            missions[2].text = $"<s>가스밸브 잠그기({lockedGasvalveCount}/5)</s>";
+            missions[2].text = $"<s>{missions[2].text}</s>";
         }
         else
         {
@@ -77,7 +77,7 @@ public class MissionObject : MonoBehaviour
         oilCount++;
         if (oilCount == 5)
         {
-            missions[3].text = $"<s>탈출용 우주션 연료 구하기({oilCount}/5)</s>";
+            missions[3].text = $"<s>{missions[3].text}</s>";
         }
         else
         {
