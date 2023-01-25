@@ -47,7 +47,6 @@ public class HelpBoard : MonoBehaviour
     /// </summary>
     public void closeHelp()
     {
-        currentPage = 0; //닫을때 페이지 초기화
         GameManager.Inst.usingHelp = false;
         GameManager.Inst.StopMenu.gameObject.SetActive(true);
         gameObject.SetActive(false);
