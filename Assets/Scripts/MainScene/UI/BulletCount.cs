@@ -19,11 +19,11 @@ public class BulletCount : MonoBehaviour
         handgun.changeBullet += bulletCount;    //장전된 총알 개수가  변했을때 실행됨
         handgun.changeHaveBullet += haveBullet; //총알의 총 개수가 변했을때 실행됨
     }  
-    private void bulletCount(int obj)
+    private void bulletCount()
     {
         text.text = $"{handgun.ReloadedBulletCount}/{handgun.HaveBullet}";
     }
-    private void haveBullet(int obj)
+    private void haveBullet()
     {
         text.text = $"{handgun.ReloadedBulletCount}/{handgun.HaveBullet}";
     }

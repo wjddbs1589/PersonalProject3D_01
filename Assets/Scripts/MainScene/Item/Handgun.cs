@@ -29,10 +29,10 @@ public class Handgun : MonoBehaviour, UseableObject
         set 
         {
             reloadedBullet = Mathf.Clamp(value, 0, canReloadBulletCount);
-            changeBullet?.Invoke(reloadedBullet);
+            changeBullet?.Invoke();
         }
     }
-    public Action<int> changeBullet;
+    public Action changeBullet;
     //----------------------------------------------------------------------------
     int haveBullet = 0;  // 소지한 총알 개수
     public int HaveBullet
@@ -41,10 +41,10 @@ public class Handgun : MonoBehaviour, UseableObject
         set
         {
             haveBullet = Mathf.Clamp(value, 0, MaxBullet);
-            changeBullet?.Invoke(haveBullet);   
+            changeBullet?.Invoke();   
         }
     }
-    public Action<int> changeHaveBullet;
+    public Action changeHaveBullet;
     //----------------------------------------------------------------------------
     private void Awake()
     {

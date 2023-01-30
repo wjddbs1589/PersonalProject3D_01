@@ -225,6 +225,8 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
         Debug.Log($"recognize:{IntimidateType}=>인식애니메이션 재생");
         anim.SetInteger("FindPlayer", IntimidateType);
     }
+
+    //애니메이션에 포함된 함수. 상태를 추격상태로 변경
     void changeToChase()
     {
         MonsterState = monsterState.chase;  //추격상태로 변경
@@ -332,7 +334,7 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
         if(HP > 0 && MonsterState != monsterState.recognition) //hp가 0이 아니거나 인식상태가 아니면
         {
             HP -= damage; //체력을 데미지 만큼 감소시킨다.
-            agent.speed = fixedSpeed; //속도 고정속도(0)설정
+            agent.speed = fixedSpeed; //몬스터 자리에 멈춤
             anim.SetBool("Attacked", true); //애니메이션 설정
             int randAttackedType = Random.Range(1, 4); //랜덤으로 숫자를 뽑아 
             switch (randAttackedType) //숫자에 해당하는 애니메이션 재생
@@ -351,9 +353,11 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
             }
         }
     }
+
+    // 애니메이션 내에 포함된 함수
     void recoveryToIdle()
     {
-        if(MonsterState != monsterState.die) //현재 죽은상태가 아니라면
+        if (MonsterState != monsterState.die) //현재 죽은상태가 아니라면
         {
             agent.speed = chaseSpeed; //추격속도로 변경
             anim.SetBool("Attacked", false); //애니메이션 변경

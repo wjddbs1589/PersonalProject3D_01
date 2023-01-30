@@ -45,11 +45,12 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
             }
         }
     }
+
     //바로 사용하는 오브젝트인지 확인
-    public bool immediatelyUseable() 
-    {
-        return true;
-    }
+    //public bool immediatelyUseable() 
+    //{
+    //    return true;
+    //}
 
     public string objectName()
     { 
