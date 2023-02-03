@@ -30,10 +30,10 @@ public class Door : MonoBehaviour, UseableObject
         return "열기/닫기";
     }
 
-    public bool canInteractive()
-    {
-        return true;
-    }
+    //public bool canInteractive()
+    //{
+    //    return true;
+    //}
 
     public void UseItem()
     {

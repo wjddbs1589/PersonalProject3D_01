@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemSelect : MonoBehaviour
 {
     Player player;
-    public Transform itemPos;
+    Transform itemPos;
     public int preItemNum;
     public GameObject nowItem;
     UseableObject obj;
@@ -14,6 +14,7 @@ public class ItemSelect : MonoBehaviour
     {
         player = GameManager.Inst.Player;
         player.onItemChange += ItemChange;
+        itemPos = transform.Find("ItemPos").transform;
     }
 
     private void ItemChange(int itemNumber)

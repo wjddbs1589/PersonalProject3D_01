@@ -47,11 +47,11 @@ public class Generator : MonoBehaviour, UseableObject
         }
     }
 
-    public bool canInteractive()
-    {
-        bool result = false;
-        return result;
-    }
+    //public bool canInteractive()
+    //{
+    //    bool result = false;
+    //    return result;
+    //}
 
     public void UseItem()
     {       

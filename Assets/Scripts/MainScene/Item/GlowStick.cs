@@ -6,14 +6,14 @@ public class GlowStick : MonoBehaviour, UseableObject
 {
     Rigidbody rigid;
     ItemManager itemManager;
-    ItemUsePos itemUsePos;
+    Transform itemUsePos;
     public Sprite itemImagePrefab;
     Player player;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
-        itemUsePos = FindObjectOfType<ItemUsePos>();
+        itemUsePos = GameObject.Find("ItemPos").transform;
     }
     private void Start()
     {
@@ -49,7 +49,7 @@ public class GlowStick : MonoBehaviour, UseableObject
         if (itemManager.currentItemCount[(int)Itemlist.GlowStick] != 0)
         {
             GameObject obj = Instantiate(GameManager.Inst.ItemManager.SavedItem[(int)Itemlist.GlowStick]);  //해당 아이템 생성
-            obj.transform.position = itemUsePos.transform.position;  // 아이템이 사용되었을때 생성위치(플레이어 안에 내재된 아이템 사용위치)로 이동
+            obj.transform.position = itemUsePos.position;  // 아이템이 사용되었을때 생성위치(플레이어 안에 내재된 아이템 사용위치)로 이동
             obj.GetComponent<Rigidbody>().useGravity = true;         // 아이템에 중력 적용
             obj.GetComponent<Collider>().isTrigger = false;          // 아이템의 isTrigger 변경
 

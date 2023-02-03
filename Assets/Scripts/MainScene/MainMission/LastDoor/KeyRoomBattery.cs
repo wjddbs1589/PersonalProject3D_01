@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class KeyRoomBattery : MonoBehaviour
 {
-    Battery[] batterys;
+    GameObject[] Batterys;
     Material[] materials;
     //배터리 개수-------------------------------------------------------
     int batteryCount = 0;
@@ -23,8 +23,12 @@ public class KeyRoomBattery : MonoBehaviour
     //-------------------------------------------------------
 
     private void Awake()
-    {        
-        batterys = GetComponentsInChildren<Battery>();        
+    {
+        Batterys = new GameObject[4];
+        for (int i = 0; i < 4; i++)
+        {
+            Batterys[i] = transform.GetChild(i).gameObject;
+        }    
     }
     private void Start()
     {
@@ -37,7 +41,7 @@ public class KeyRoomBattery : MonoBehaviour
     /// <param name="count">발전기 작동 카운트</param>
     private void BatteryLightChange(int count)
     {
-        materials = batterys[count-1].gameObject.GetComponent<Renderer>().materials;
+        materials = Batterys[count-1].GetComponent<Renderer>().materials;
         materials[1].SetColor("_EmissionColor",Color.green);
     }
 }

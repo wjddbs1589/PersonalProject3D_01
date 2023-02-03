@@ -58,6 +58,7 @@ public class Player : MonoBehaviour, HealthInfoManager
     // 카메라 관련변수
     public GameObject cameraTarget; //카메라타겟, 시네머신카메라가 따라올 대상
     Vector2 look;
+
     [Header("카메라최대/최소각도")]
     public float TopClamp = 60.0f;
     public float BottomClamp = -45.0f;
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour, HealthInfoManager
 
     //플레이어 플래쉬라이트
     GameObject playerLight;
-    bool onLight = false;                   // 플래쉬를 사용 여부
+    bool onLight = false;   // 플래쉬를 사용 여부
 
     // 필드 아이템 상호작용
     TextMeshProUGUI itemNameText;
@@ -149,36 +150,38 @@ public class Player : MonoBehaviour, HealthInfoManager
 
     private void Update()
     {
-        // 키보드 이동이 있을때
+        // WASD 이동이 있을때
         if (moveDir.sqrMagnitude > 0.0f)
         {
-            // 앉아있지 않고 달리기를 눌렀을 때 + 스태미너가 남아 있을 때
+            // 앉아있지 않고 달리기를 눌렀을 때 & 스태미너가 남아 있을 때 = 달리고 있을때
             if (!OnSit && onSprint)
             {
-                currentStamina -= Time.deltaTime;
+                currentStamina -= Time.deltaTime; // 스태미너 감소
                 
+                //스태미너가 다 떨어졌으면
                 if (currentStamina <= 0.0f)
                 {
-                    onSprint = false;
+                    onSprint = false; // 달리기 상태 변경
                 }
                 moveSpeed = runSpeed;
             }
-            else
+            // 달리고 있지 않을때
+            else 
             {
-                currentStamina += Time.deltaTime * 0.5f;
+                currentStamina += Time.deltaTime * 0.5f; // 스태미너 회복
                 // 앉아있을 때
                 if (OnSit)
                 {
                     moveSpeed = sitSpeed;
                 }
-                //서 있을때
+                // 서 있을때
                 else
                 {
                     moveSpeed = walkSpeed;
                 }
             }
-            controller.Move((transform.forward * moveDir.z * moveSpeed * Time.deltaTime) //앞으로 이동
-                + (transform.right * moveDir.x * moveSpeed * Time.deltaTime)); // 옆으로 이동            
+            controller.Move((transform.forward * moveDir.z * moveSpeed * Time.deltaTime) // 앞으로 이동
+                + (transform.right * moveDir.x * moveSpeed * Time.deltaTime));           // 옆으로 이동            
         }
         else
         {
@@ -193,11 +196,12 @@ public class Player : MonoBehaviour, HealthInfoManager
         }
 
 
-        //ray에 닿았고 상호작용 범위에 있을때 사용가능 으로 만들어야 함
-        //Physics.Raycast(원점: 캡슐 위치, 방향: 캡슐의 앞 방향, 충돌감지: hit, 거리: 15)에 뭔가 있으면 true
+        // Physics.Raycast(원점: 캡슐 위치, 방향: 캡슐의 앞 방향, 충돌감지: hit, 거리: 15)에 있는 물체의 LayerMask가 Useable이면 true 반환
         if (Physics.Raycast(cameraTarget.transform.position, cameraTarget.transform.forward, out RaycastHit hit, 2.5f, LayerMask.GetMask("Useable")))
         {
-            useable = hit.transform.GetComponent<UseableObject>();
+            useable = hit.transform.GetComponent<UseableObject>(); 
+
+            //상호작용 가능한 오브젝트인지 확인
             if (useable != null)
             {
                 itemNameText.text = useable.objectName();
@@ -209,7 +213,7 @@ public class Player : MonoBehaviour, HealthInfoManager
             itemNameText.text = null;
         }
         //ray Debug 사용가능한 아이템 오브젝트 확인용
-        Debug.DrawRay(cameraTarget.transform.position, cameraTarget.transform.forward * 2.5f, Color.blue);
+        //Debug.DrawRay(cameraTarget.transform.position, cameraTarget.transform.forward * 2.5f, Color.blue);
     }
     private void LateUpdate()
     {
@@ -253,7 +257,7 @@ public class Player : MonoBehaviour, HealthInfoManager
         }
     }
 
-    //마우스의 움직임을 받음
+    //마우스의 움직임을 입력 받음
     private void onLook(InputAction.CallbackContext context)
     {
         look = context.ReadValue<Vector2>();
@@ -261,7 +265,7 @@ public class Player : MonoBehaviour, HealthInfoManager
 
 
     // 필드 아이템 상호작용 기능 -----------------------------------------------
-    // E키를 눌렀을 때 상호작용 가능한 아이템이 있으면 아이템을 사용
+    // E키를 눌러 대상의 상호작용 함수 실행. 
     private void onInteractive(InputAction.CallbackContext _)
     {
         if(useable != null)
@@ -275,31 +279,37 @@ public class Player : MonoBehaviour, HealthInfoManager
     {
         sitChange();
     }
+
     /// <summary>
     /// 앉아있는 상태에 따라 카메라와 조명의 높낮이 조절
     /// </summary>
     void sitChange()
     {
-        float yPos = 0.75f;
+        float yPos = 0.75f;       // 캐릭터 콜라이더의 중간 높이
+        float centerYPos = 0.75f; // 높이 조정용 변수
+
+        //앉은상태가 아니면
         if (!OnSit)
         {
-            yPos *= -1;
-            controller.center = new(0, 0.375f, 0);
-            controller.height = 0.75f;            
-            OnSit = true;
+            yPos *= -1;                                     // 카메라와 플래쉬 라이트 위치 감소용
+            controller.center = new(0, centerYPos*0.5f, 0); // 센터 높이 절반 감소
+            controller.height = centerYPos;                 // 전체 높이 절반 감소 
+            OnSit = true;                                   // 앉은상태 여부 저장
         }
         else
         {
-            yPos *= 1;
-            controller.center = new(0, 0.75f, 0);
-            controller.height = 1.5f;
-            OnSit = false;
+            yPos *= 1;                                  // 카메라와 플래쉬 라이트 위치 증가용
+            controller.center = new(0, centerYPos, 0);  // 센터 높이 복구
+            controller.height = centerYPos*2;           // 전체 높이 복구
+            OnSit = false;                              // 앉은상태 여부 저장
         }
-        cameraTarget.transform.position = new Vector3(transform.position.x, cameraTarget.transform.position.y + yPos, transform.position.z);
-        playerLight.transform.position = new Vector3(transform.position.x, playerLight.transform.position.y + yPos, transform.position.z);
+
+        cameraTarget.transform.position = new Vector3(transform.position.x, cameraTarget.transform.position.y + yPos, transform.position.z); // 카메라의 위치를 눈높이로 변경
+        playerLight.transform.position = new Vector3(transform.position.x, playerLight.transform.position.y + yPos, transform.position.z);   // 플래쉬라이트의 위치를 눈높이로 변경
     }
+
     /// <summary>
-    /// r키를 누르면 재장전 한다.
+    /// R키를 누르면 재장전 한다.
     /// </summary>
     /// <param name="_"></param>
     private void onReload(InputAction.CallbackContext _)
@@ -319,6 +329,7 @@ public class Player : MonoBehaviour, HealthInfoManager
         }
     }
     public Action<int> onItemChange;
+
     private void select1Item(InputAction.CallbackContext _)
     {
         selectItem.preItemNum = SelectedItemNumber;
@@ -350,14 +361,14 @@ public class Player : MonoBehaviour, HealthInfoManager
         SelectedItemNumber = 5;
     }
 
-
     /// <summary>
     /// esc를 눌렀을때 메뉴 상호작용
     /// </summary>
     /// <param name="_"></param>
     private void useESC(InputAction.CallbackContext _)
     {
-        if (!menuState && GameManager.Inst.usingHelp == false) //메뉴 사용중이 아니고 도움말 사용중이 아닐때
+        //메뉴 사용중이 아니고 도움말 사용중이 아닐때
+        if (!menuState && GameManager.Inst.usingHelp == false) 
         {
             Time.timeScale = 0.0f;      //게임속도 0으로 설정
             Cursor.lockState = CursorLockMode.None;
@@ -366,15 +377,9 @@ public class Player : MonoBehaviour, HealthInfoManager
             actions.Player.Disable();   //인풋액션 비활성화
             GameManager.Inst.openMenu();//메뉴 활성화
             menuState = true;           //메뉴 활성상태 활성으로 변경
-        }
-        //else //메뉴 사용중이면 메뉴 닫는 함수 활성
-        //{
-        //    if(GameManager.Inst.usingHelp == false)
-        //    {
-        //        offMenu();
-        //    }
-        //}        
+        } 
     }
+
     /// <summary>
     /// 메뉴 닫기
     /// </summary>
@@ -387,6 +392,7 @@ public class Player : MonoBehaviour, HealthInfoManager
         Cursor.lockState = CursorLockMode.Locked; //커서 중간에 고정 
         menuState = false;                        //메뉴 활성상태 비활성으로 변경
     }
+
     //우클릭으로 선택한 아이템 사용
     private void UseItem(InputAction.CallbackContext _)
     {
@@ -449,6 +455,7 @@ public class Player : MonoBehaviour, HealthInfoManager
     {
         HP -= damage;
     }
+
     /// <summary>
     /// 플레이어가 죽으면 처음 선택화면으로 돌아감
     /// </summary>
