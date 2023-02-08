@@ -13,7 +13,7 @@ public class Lever : MonoBehaviour,UseableObject
         shipRoomDoor = FindObjectOfType<ShipRoomDoor>();
         anim = GetComponent<Animator>();
     }
-    public void objectIneractive()
+    public void objectInteractive()
     {
         leverUsed = true;
         GameManager.Inst.MissionObject.useLever();

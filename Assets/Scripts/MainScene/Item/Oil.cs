@@ -11,7 +11,7 @@ public class Oil : MonoBehaviour, UseableObject
         itemManager = GameManager.Inst.ItemManager;
     }
     //아이템 상호작용시
-    public void objectIneractive()
+    public void objectInteractive()
     {
         if (itemManager.currentItemCount[(int)Itemlist.Oil] < itemManager.maxItemCount[(int)Itemlist.Oil]) //현재 가진 아이템이 최대 소지 개수보다 적을 때
         {

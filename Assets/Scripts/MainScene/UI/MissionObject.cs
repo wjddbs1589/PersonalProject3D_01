@@ -46,42 +46,33 @@ public class MissionObject : MonoBehaviour
     public void fixGenerate()
     {
         fixedGenerateCount++;
+        missions[1].text = $"발전기 수리하기({fixedGenerateCount}/4)";
         if (fixedGenerateCount == 5)
         {
             missions[1].text = $"<s>{missions[1].text}</s>";
-        }
-        else
-        {
-            missions[1].text = $"발전기 수리하기({fixedGenerateCount}/4)";
-        }        
+        }      
     }
 
 
     //3번째 미션 관리 함수. 잠군 가스밸브의 개수를 증가시킴
-    public void lockGasvale()
+    public void lockGasvalve()
     {
         lockedGasvalveCount++;
+        missions[2].text = $"가스밸브 잠그기({lockedGasvalveCount}/5)";
         if (lockedGasvalveCount == 5)
         {
             missions[2].text = $"<s>{missions[2].text}</s>";
-        }
-        else
-        {
-            missions[2].text = $"가스밸브 잠그기({lockedGasvalveCount}/5)";
-        }        
+        }    
     }
 
     //4번째 미션 관리 함수. 획득한 오일 개수 증가
     public void gainOil()
     {
         oilCount++;
+        missions[3].text = $"탈출용 우주션 연료 구하기({oilCount}/5)";
         if (oilCount == 5)
         {
             missions[3].text = $"<s>{missions[3].text}</s>";
-        }
-        else
-        {
-            missions[3].text = $"탈출용 우주션 연료 구하기({oilCount}/5)";
-        }        
+        }      
     } 
 }

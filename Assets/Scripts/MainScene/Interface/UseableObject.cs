@@ -5,18 +5,18 @@ using UnityEngine;
 public interface UseableObject
 {
     /// <summary>
-    /// 맵에 있는 아이템 상호 작용할 함수
+    /// 상호작용할 때 실행될 함수
     /// </summary>
-    void objectIneractive();
+    void objectInteractive();
 
     /// <summary>
     /// 상호작용 가능한 오브젝트의 이름 반환할 함수
     /// </summary>
-    /// <returns>현재 조준하고있는 오브젝트명 반환</returns>
+    /// <returns>현재 마우스가 가리키고있는 오브젝트명 반환</returns>
     string objectName();
 
     /// <summary>
-    /// 아이템을 사용하는 함수
+    /// 인벤토리에 보유중인 아이템을 사용하는 함수
     /// </summary>
     void UseItem();
 

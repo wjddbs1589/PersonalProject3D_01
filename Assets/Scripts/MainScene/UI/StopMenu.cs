@@ -21,7 +21,6 @@ public class StopMenu : MonoBehaviour
     /// </summary>
     public void goToHome()
     {
-        GameManager.Inst.Player.offMenu();
         SceneManager.LoadScene("SelectScene");
     }
 
@@ -29,9 +28,9 @@ public class StopMenu : MonoBehaviour
     /// 도움말 보기
     /// </summary>
     public void openHelpBoard()
-    {        
-        GameManager.Inst.HelpBoard.gameObject.SetActive(true);
+    {                
         gameObject.SetActive(false);
+        GameManager.Inst.HelpBoard.gameObject.SetActive(true);
         GameManager.Inst.usingHelp = true;
     }
 }

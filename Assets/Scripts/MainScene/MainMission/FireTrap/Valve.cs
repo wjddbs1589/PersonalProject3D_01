@@ -7,7 +7,6 @@ public class Valve : MonoBehaviour, UseableObject
 {
     FireTrap trap;
     bool used = false;
-    bool usingValve = true;
     float rotateTime = 0;
     private void Awake()
     {
@@ -15,20 +14,21 @@ public class Valve : MonoBehaviour, UseableObject
     }
    
     // 아이템 상호작용
-    public void objectIneractive()
+    public void objectInteractive()
     {
-        //아직 사용하지 않은 상태일때 상호작용후 사용됨으로 변경
+        //아직 사용하지 않은 상태일때 
         if (!used)
         {
             used = true;
-            GameManager.Inst.MissionObject.lockGasvale();
+            GameManager.Inst.MissionObject.lockGasvalve();
             StartCoroutine(valveRotate());
             trap.ValveCount += 1;
         }        
     }
-    // 아이템을 사용했을때 while문을 이용하여 밸브를 일정 시간동안 회전시키고 일정시간이 지나면 while문 탈출하여 멈춤
+    //밸브를 1초 동안 회전
     IEnumerator valveRotate()
     {
+        bool usingValve = true;
         while (usingValve)
         {
             transform.Rotate(0,360.0f*Time.deltaTime, 0);

@@ -30,7 +30,6 @@ public class FireTrap : MonoBehaviour
     {
         ChangeValveCount += CheckValveUse;
     }
-
     //밸브사용여부 체크
     void CheckValveUse(float valveCount)
     {

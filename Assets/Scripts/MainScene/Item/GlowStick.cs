@@ -24,7 +24,7 @@ public class GlowStick : MonoBehaviour, UseableObject
     /// <summary>
     /// 아이템 상호작용시 인벤토리에 저장하고 게임오브젝트 제거
     /// </summary>
-    public void objectIneractive()
+    public void objectInteractive()
     {
         if (GameManager.Inst.ItemManager.saveItem(Itemlist.GlowStick))
         {

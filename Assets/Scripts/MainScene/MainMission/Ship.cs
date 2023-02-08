@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour, UseableObject
     {
         itemManager = GameManager.Inst.ItemManager;
     }
-    public void objectIneractive()
+    public void objectInteractive()
     {
         //현재 충전된 기름이 5개 미만이고
         if(chargedOil < 5)

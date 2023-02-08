@@ -20,37 +20,36 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
         allOfBattery = GameManager.Inst.KeyRoomBattery;
         allOfBattery.OnBattery += CheckBattery;
     }
-    // 배터리 갯수가 증가할때 마다 실행, 4개를 다 채우면 문 열림
+    // 수리된 배터리 갯수가 증가할때 마다 실행
     private void CheckBattery(int count)
     {
+        // 배터리가 전부 수리 되었으면
         if(batteryCount == count)
         {
-            canOpenDoor = true;
+            canOpenDoor = true; //문 잠금 해제
         }
     }
 
-    public void objectIneractive()
+    //문 열기 상호작용
+    public void objectInteractive()
     {
-        if (canInteractive()) //문을 열수 있는 상태일때
+        //문의 잠금상태가 풀렸을 때
+        if (canOpenDoor)
         {
-            if (checkDoorOpen) //문이 열려있을 때
+            //문이 열려 있을 때
+            if (checkDoorOpen)
             {
-                anim.SetTrigger("Close");
+                anim.SetTrigger("Close"); 
                 checkDoorOpen = false;
             }
-            else  //문이 닫혀있을 때
+            else
             {
                 anim.SetTrigger("Open");
                 checkDoorOpen = true;
             }
         }
+        
     }
-
-    //바로 사용하는 오브젝트인지 확인
-    //public bool immediatelyUseable() 
-    //{
-    //    return true;
-    //}
 
     public string objectName()
     { 
@@ -63,20 +62,9 @@ public class KeyRoomDoor : MonoBehaviour, UseableObject
             return "전력 부족";
         }
     }
-
-    public bool canInteractive()
-    {
-        bool result = false;
-        if (canOpenDoor)
-        {
-            result = true;
-        }
-        return result;
-    }
-
     public void UseItem()
     {
-        
+      // 해당사항 없음   
     }
     public Sprite returnItemSprite()
     {

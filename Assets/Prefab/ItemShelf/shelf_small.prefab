@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3201071630638086882}
   - component: {fileID: 3201071630639142432}
   - component: {fileID: 3201071630634919832}
-  - component: {fileID: 8301702509248160011}
+  - component: {fileID: 7146833519471823395}
   m_Layer: 0
   m_Name: shelf_small
   m_TagString: Untagged
@@ -100,7 +100,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6674594, y: 1.4968405, z: 0.54903156}
   m_Center: {x: 0, y: 0.74842024, z: 0.27451578}
---- !u!114 &8301702509248160011
+--- !u!114 &7146833519471823395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3201071630641152754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054c177c4cce95b4082647f07fb7f631, type: 3}
+  m_Script: {fileID: 11500000, guid: 229c8f6bb82a35e458db1a9e0688c8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4101746301327572647

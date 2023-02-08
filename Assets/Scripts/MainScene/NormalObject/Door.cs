@@ -11,7 +11,7 @@ public class Door : MonoBehaviour, UseableObject
     {
         anim = GetComponent<Animator>();
     }
-    public void objectIneractive()
+    public void objectInteractive()
     {
         //도어가 열려있는 상태이면
         if (doorOpen)
@@ -29,12 +29,6 @@ public class Door : MonoBehaviour, UseableObject
     {
         return "열기/닫기";
     }
-
-    //public bool canInteractive()
-    //{
-    //    return true;
-    //}
-
     public void UseItem()
     {
         

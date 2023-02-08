@@ -270,7 +270,7 @@ public class Player : MonoBehaviour, HealthInfoManager
     {
         if(useable != null)
         {
-            useable.objectIneractive();
+            useable.objectInteractive();
         }
     }
 

@@ -12,7 +12,7 @@ public class RepairKit : MonoBehaviour, UseableObject
         itemManager = GameManager.Inst.ItemManager;
     }
     //아이템 상호작용시 발생하는 함수
-    public void objectIneractive()
+    public void objectInteractive()
     {
         if (itemManager.currentItemCount[(int)Itemlist.RepairKit] < itemManager.maxItemCount[(int)Itemlist.RepairKit]) //현재 가진 아이템이 최대 소지 개수보다 적을 때
         {
