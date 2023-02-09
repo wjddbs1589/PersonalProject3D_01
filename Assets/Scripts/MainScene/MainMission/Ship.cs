@@ -13,24 +13,28 @@ public class Ship : MonoBehaviour, UseableObject
     }
     public void objectInteractive()
     {
-        //현재 충전된 기름이 5개 미만이고
+        //주유된 오일이 5개 미만일 때
         if(chargedOil < 5)
         {
-            if (itemManager.currentItemCount[(int)Itemlist.Oil] > 0) //인벤토리에 오일이 0개보다 많으면
+            //인벤토리에 오일이 0개보다 많으면
+            if (itemManager.currentItemCount[(int)Itemlist.Oil] > 0)
             {
-                chargedOil += 1; //충전된 오일 갯수 증가
+                chargedOil += 1;                             //충전된 오일 갯수 증가
                 itemManager.decreaseItemCount(Itemlist.Oil); //오일 아이템 갯수 감소
-                if (itemManager.currentItemCount[(int)Itemlist.Oil] == 0) //오일 아이템이 남아있지 않으면
+
+                //오일 아이템이 남아있지 않으면
+                if (itemManager.currentItemCount[(int)Itemlist.Oil] == 0) 
                 {
                     itemManager.ItemDelete(Itemlist.Oil);  //인벤토리에서 삭제
                 }
             }
         }
-        else
+        else // 연료가 모두 채워졌을 때
         {
             SceneManager.LoadScene("SelectScene"); // 처음씬으로 이동
         }
     }
+
 
     public string objectName()
     {

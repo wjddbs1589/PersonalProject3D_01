@@ -94,10 +94,13 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     }
 
    
-    private void Update()
+    void Update()
     {
-        if (agent.pathPending) // navmesh가 도중에 경로를 재탐색 하여 거리가 0이 되는 경우를 방지. 경로가 계산될때까지 호출 무시
+        // navmesh가 도중에 경로를 재탐색 하여 거리가 0이 되는 경우를 방지.
+        // 경로가 계산될때까지 호출 무시
+        if (agent.pathPending) 
             return;
+
         if (alive)
         {
             // 인식 애니메이션을 사용중일땐 일반행동 불가
@@ -133,27 +136,27 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     //기본 상태-----------------------------------------------------------------------------------------------------------------------------------------------
     void idle()
     {
-        SearchPlayer();  //플레이어를 탐색
-        if (!staying)    //현재 머무르는중이 아니면
+        SearchPlayer();  // 플레이어를 탐색
+        if (!staying)    // 현재 머무르는중이 아니면
         { 
-            staying = true;         //멈춤상태로 변경
-            StartCoroutine(stay()); //코루틴 실행
+            staying = true;         // 멈춤상태로 변경
+            StartCoroutine(stay()); // 코루틴 실행
         }
     }
     IEnumerator stay()
     {
-        anim.SetBool("Moving", false);         //애니메이션 변경
-        yield return new WaitForSeconds(5.0f); //5초이후
+        anim.SetBool("Moving", false);         // 애니메이션 변경
+        yield return new WaitForSeconds(5.0f); // 5초이후
 
         //몬스터가 아직 기본상태이면 이동상태로 변경
         if(MonsterState == monsterState.idle)
         {            
-            MonsterState = monsterState.move; //몬스터를 이동상태로 변경
-            anim.SetBool("Moving", true);     //이동 애니메이션 재생
-            int randNum = Random.Range(1, 23);//1에서22사이의 숫자를 뽑음
-            destination = GameManager.Inst.MonsterSpawner.spawnPos[randNum]; //선택된 숫자번째의 위치를 목적지로 저장
-            agent.SetDestination(destination.position); //목적지 지정
-            staying = false;                            //멈춤상태 취소
+            MonsterState = monsterState.move;                                // 몬스터를 이동상태로 변경
+            anim.SetBool("Moving", true);                                    // 이동 애니메이션 재생
+            int randNum = Random.Range(1, 23);                               // 1에서22사이의 숫자를 뽑음
+            destination = GameManager.Inst.MonsterSpawner.spawnPos[randNum]; // 선택된 숫자번째의 위치를 목적지로 저장
+            agent.SetDestination(destination.position);                      // 목적지 지정
+            staying = false;                                                 // 멈춤상태 취소
         }
     }
 
@@ -161,7 +164,9 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     void move()
     {
         SearchPlayer();  //플레이어 탐색
-        if ( agent.remainingDistance <= agent.stoppingDistance) //남은거리가 멈춤거리보다 적으면
+
+        //남은거리가 멈춤거리보다 적으면
+        if ( agent.remainingDistance <= agent.stoppingDistance) 
         {
             MonsterState = monsterState.idle; //기본상태로 변경
         }
@@ -170,21 +175,26 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     //플레이어 탐색-----------------------------------------------------------------------------------------------------------------------------------------------
     void SearchPlayer()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, sightRange, LayerMask.GetMask("Player"));        
-        if(colliders.Length > 0) // 감지거리 내에 플레이어가 Player라는 레이어를 가진 콜라이더가 존재할 때
+        Collider[] colliders = Physics.OverlapSphere(transform.position, sightRange, LayerMask.GetMask("Player"));
+
+        // 감지거리 내에 플레이어가 Player라는 레이어를 가진 콜라이더가 존재할 때
+        if (colliders.Length > 0) 
         {
             Vector3 targetPosition = colliders[0].transform.position; // 콜라이더의 위치정보 가져옴
-            
-            if (InSightAngle(targetPosition)) // 플레이어의 현재 위치가 시야각 내에 있는지 확인
+
+            // 플레이어의 현재 위치가 시야각 내에 있는지 확인
+            if (InSightAngle(targetPosition)) 
             {
-                if (!BlockByWall(targetPosition)) // 플레이어의 현재 위치가 벽을 사이에 두고 있는지 확인
+                // 플레이어의 현재 위치가 벽을 사이에 두고 있는지 확인
+                if (!BlockByWall(targetPosition)) 
                 {
                     target = colliders[0].gameObject;
                     Debug.Log("시야내에서 발견됨");
                     MonsterState = monsterState.recognition;
                 }
             }
-            else if((targetPosition-transform.position).sqrMagnitude < (sightRange*0.5)* (sightRange * 0.5)) // 몬스터와 가까운 거리에 있으면
+            // 몬스터와 가까운 거리에 있으면
+            else if ((targetPosition-transform.position).sqrMagnitude < (sightRange*0.5)* (sightRange * 0.5)) 
             {
                 Debug.Log("근처에서 발견됨");
                 target = colliders[0].gameObject;
@@ -192,19 +202,28 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
             }
         }
     }   
-
-    //타겟이 시야내에 있는지 확인
+    
+    //타겟이 시야 내에 있는지 확인
     bool InSightAngle(Vector3 targetPosition)
     {
-        float angle = Vector3.Angle(transform.forward, targetPosition - transform.position); // transform.forward와 targetPosition - transform.position의 사이각 반환
+        // transform.forward와 targetPosition - transform.position의 사이각 반환
+        float angle = Vector3.Angle(transform.forward, targetPosition - transform.position);
+
         return (sightAngle * 0.5f) > angle; // 시야각이 90도 이므로 +-45각도확인
     }
-    //타겟이 벽을 사이에 두고 있는지 확인
+    /// <summary>
+    /// 타겟과 이 오브젝트 사이에 다른 물체가 있는지 학인
+    /// </summary>
+    /// <param name="targetPosition">타겟의 위치</param>
+    /// <returns>다른 물체가 있으면 true, 없으면 false</returns>
     bool BlockByWall(Vector3 targetPosition)
     {
         bool result = true;
-        Ray ray = new(transform.position, targetPosition - transform.position); // 레이 만들기(시작점, 방향)
-        ray.origin += Vector3.up * 0.5f;    // 몬스터의 눈높이로 레이 시작점을 높임        
+        Ray ray = new(transform.position, targetPosition - transform.position); // Ray 만들기(시작점, 방향)
+
+        // 몬스터의 눈높이로 레이 시작점을 높임 
+        ray.origin += Vector3.up * 0.5f;
+        
         if (Physics.Raycast(ray, out RaycastHit hit, LayerMask.GetMask("Player")))
         {
             result = false;
@@ -213,20 +232,18 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
         return result; 
     }
 
-    //플레이어 인식-----------------------------------------------------------------------------------------------------------------------------------------------
-    
+    //플레이어 인식
     void recognizePlayer()
     {
-        useRecognizeAnimation = false;
-        anim.SetBool("Moving", true);
-        transform.LookAt(target.transform.position);    //플레이어를 바라봄
-        agent.speed = fixedSpeed;
-        int IntimidateType = Random.Range(1, 3);
-        Debug.Log($"recognize:{IntimidateType}=>인식애니메이션 재생");
-        anim.SetInteger("FindPlayer", IntimidateType);
+        useRecognizeAnimation = false;                  // 인식 애니메이션 재생 여부 
+        anim.SetBool("Moving", true);                   // 애니메이션 재생 준비
+        transform.LookAt(target.transform.position);    // 플레이어를 바라봄
+        agent.speed = fixedSpeed;                       // 위치 고정
+        int IntimidateType = Random.Range(1, 3);            
+        anim.SetInteger("FindPlayer", IntimidateType);  // 인식 애니메이션 재생
     }
-
-    //애니메이션에 포함된 함수. 상태를 추격상태로 변경
+    //애니메이션에 포함된 함수.
+    //애니메이션 종료후 상태를 추격상태로 변경
     void changeToChase()
     {
         MonsterState = monsterState.chase;  //추격상태로 변경
@@ -235,49 +252,61 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
         agent.speed = chaseSpeed;  //추격속도로 변경
     }
 
-    //플레이어 추격-----------------------------------------------------------------------------------------------------------------------------------------------
+    //플레이어 추격
     float chaseTime = 10.0f;
     float originChaseTime = 10.0f;
     void ChasePlayer()
     {
         agent.SetDestination(target.transform.position); //목적지를 타겟의 위치로 변경
-        if (agent.remainingDistance <= agent.stoppingDistance) //거리가 가까워지면
+
+        //거리가 가까워지면
+        if (agent.remainingDistance <= agent.stoppingDistance) 
         {
             MonsterState = monsterState.attack; //공격 상태로 변경
         }
 
-        if (agent.remainingDistance > agent.stoppingDistance * 1.5f) // 남은 거리가 멈춤거리의 1.5배 이상일 경우
+        // 남은 거리가 멈춤거리의 1.5배 이상일 경우
+        if (agent.remainingDistance > agent.stoppingDistance * 1.5f) 
         {
             chaseTime -= Time.deltaTime; //추격시간 감소
-            if (chaseTime <= 0) // 추격시간이 0이하일때
+
+            // 추격시간이 0이하일때
+            if (chaseTime <= 0) 
             {
-                if(destination == null) // 목적지가 없으면 랜덤으로 목적지 지정
+                // 목적지가 없으면 랜덤으로 목적지 지정
+                if (destination == null) 
                 {
                     int randNum = Random.Range(1, 23);
                     destination = GameManager.Inst.MonsterSpawner.spawnPos[randNum];
                 }
                 agent.SetDestination(destination.position); //목적지로 이동
-                MonsterState = monsterState.idle; //기본상태로 변경
-                agent.speed = idleSpeed;          //기본속도로 변경
-                chaseTime = originChaseTime;      //추격시간 초기화
+                MonsterState = monsterState.idle;           //기본상태로 변경
+                agent.speed = idleSpeed;                    //기본속도로 변경
+                chaseTime = originChaseTime;                //추격시간 초기화
             }
         }
     }
-    //공격 -----------------------------------------------------------------------------------------------------------------------------------------------
-   
+
+    //공격 
     void attack()
     {        
         agent.SetDestination(target.transform.position); // 타겟의 위치로 목적지 설정
         transform.LookAt(target.transform.position);     // 타겟을 바라봄
         anim.SetBool("Moving", true);   //이동 멈춤
-        if (agent.remainingDistance <= agent.stoppingDistance)  //거리가 가까우면
+
+        //거리가 가까우면
+        if (agent.remainingDistance <= agent.stoppingDistance)  
         {            
             chaseTime = originChaseTime; //추격시간 초기화
             anim.SetBool("Moving", false);  //이동 멈춤
-            if (attackCoolTime <= 0) //공격 쿨타임이 다 돌았을때
+
+            //공격 쿨타임이 다 돌았을때
+            if (attackCoolTime <= 0)
             {
                 int AttackType = Random.Range(1, 6);//랜덤으로 숫자뽑고
-                switch (AttackType) //숫자에 따라 공격모션 실행
+
+                //숫자에 따라 공격모션 실행
+                switch (AttackType) 
                 {
                     case 1:
                         anim.SetTrigger("Attack1");
@@ -357,9 +386,10 @@ public class CrabMonster : MonoBehaviour, HealthInfoManager
     // 애니메이션 내에 포함된 함수
     void recoveryToIdle()
     {
-        if (MonsterState != monsterState.die) //현재 죽은상태가 아니라면
+        //현재 죽은상태가 아니라면
+        if (MonsterState != monsterState.die) 
         {
-            agent.speed = chaseSpeed; //추격속도로 변경
+            agent.speed = chaseSpeed;        //추격속도로 변경
             anim.SetBool("Attacked", false); //애니메이션 변경
         }
     }
